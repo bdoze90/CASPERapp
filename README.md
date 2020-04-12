@@ -21,4 +21,4 @@ Any problems please email Brian Mendoza at bmendoz1@vols.utk.edu
 - matplotlib
 - matplotlib-venn
 - gffutils
-
+- webbrowser
