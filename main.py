@@ -10,7 +10,9 @@ from closingWin import closingWindow
 
 from Results import Results, geneViewerSettings
 from NewGenome import NewGenome, NCBI_Search_File
+from NewEndonuclease import NewEndonuclease
 
+import webbrowser
 import requests
 import GlobalSettings
 from bs4 import BeautifulSoup
@@ -41,8 +43,8 @@ import populationAnalysis
 class AnnotationsWindow(QtWidgets.QMainWindow):
     def __init__(self, info_path):
         super(AnnotationsWindow, self).__init__()
-        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'Annotation Details.ui'), self)
-        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
+        uic.loadUi('Annotation Details.ui', self)
+        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
         self.Submit_button.clicked.connect(self.submit)
         self.Go_Back_Button.clicked.connect(self.go_Back)
         self.select_all_checkbox.stateChanged.connect(self.select_all_genes)
@@ -233,7 +235,7 @@ class CMainWindow(QtWidgets.QMainWindow):
     def __init__(self,info_path):
 
         super(CMainWindow, self).__init__()
-        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPER_main.ui'), self)
+        uic.loadUi('CASPER_main.ui', self)
         self.dbpath = ""
         self.info_path = info_path
         self.data = {} # each org genome name and the endonucleases along with it
@@ -252,7 +254,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.organismDict = dict() # the dictionary for the links to download. Key is the description of the organism, value is the ID that can be found in link_list
 
         # --- Button Modifications --- #
-        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
+        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
         self.pushButton_FindTargets.clicked.connect(self.gather_settings)
         self.pushButton_ViewTargets.clicked.connect(self.view_results)
         self.pushButton_ViewTargets.setEnabled(False)
@@ -264,11 +266,13 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.Annotation_Ownfile.clicked.connect(self.change_annotation)
         self.NCBI_Select.clicked.connect(self.change_annotation)
         self.actionUpload_New_Genome.triggered.connect(self.launch_newGenome)
+        self.actionUpload_New_Endonuclease.triggered.connect(self.launch_newEndonuclease)        
         self.Add_Orgo_Button.clicked.connect(self.add_Orgo)
         self.Remove_Organism_Button.clicked.connect(self.remove_Orgo)
         self.endoChoice.currentIndexChanged.connect(self.endo_Changed)
         self.GenerateLibrary.clicked.connect(self.prep_genlib)
         self.actionExit.triggered.connect(self.close_app)
+
 
         self.Search_Input.setEnabled(False)
 
@@ -288,7 +292,12 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.actionChange_Directory.triggered.connect(self.change_directory)
         self.actionMultitargeting.triggered.connect(self.changeto_multitargeting)
         self.actionPopulation_Analysis.triggered.connect(self.changeto_population_Analysis)
-        # --- Setup for Gene Entry Field --- #
+        self.actionNCBI.triggered.connect(self.open_ncbi_web_page)
+        self.actionCasper2.triggered.connect(self.open_casper2_web_page)
+        self.actionNCBI_BLAST.triggered.connect(self.open_ncbi_blast_web_page)
+        #self.actionUpload_New_Endonuclease.triggered.connect(self.open_new_endonuclease_web_page)
+
+	# --- Setup for Gene Entry Field --- #
         self.geneEntryField.setPlainText("Example Inputs: \n"
                                                "Gene (LocusID): YOL086C  *for Saccharomyces Cerevisiae ADH1 gene* \n"
                                                "Position: chromosome,start,stop\n chromosome,start,stop...\n"
@@ -299,6 +308,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         #show functionalities on window
         ############################self.view_my_results = Results()
         self.newGenome = NewGenome(info_path)
+        self.newEndonuclease = NewEndonuclease()
         self.ncbi_search_dialog = NCBI_Search_File()
         self.CoTargeting = CoTargeting(info_path)
         self.Results = Results()
@@ -310,8 +320,6 @@ class CMainWindow(QtWidgets.QMainWindow):
 
         #self.newGenome.process.finished.connect(self.update_dropdowns)
         self.newGenome.contButton.clicked.connect(self.update_dropdowns)
-        menu = self.menuBar()
-        menu.setNativeMenuBar(False)
 
     def endo_Changed(self):
         i=3
@@ -837,7 +845,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             pamdir = True
             
         output_location = GlobalSettings.CSPR_DB
-        path_to_info = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPERinfo')
+        path_to_info = GlobalSettings.appdir + '/CASPERinfo'
         orgName = 'temp org'
         gRNA_length = my_seq.endo_info[myEndoChoice][2]
         seed_length = my_seq.endo_info[myEndoChoice][1]
@@ -866,6 +874,9 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def launch_newGenome(self):
        self.newGenome.show()
+
+    def launch_newEndonuclease(self):
+       self.newEndonuclease.show()
 
     # this function does the same stuff that the other collect_table_data does, but works with the other types of files
     def collect_table_data_nonkegg(self):
@@ -1326,6 +1337,25 @@ class CMainWindow(QtWidgets.QMainWindow):
         GlobalSettings.pop_Analysis.show()
         GlobalSettings.mainWindow.hide()
 
+    def open_ncbi_blast_web_page(self):
+        webbrowser.open('https://blast.ncbi.nlm.nih.gov/Blast.cgi', new=2)
+    
+    def open_ncbi_web_page(self):
+        webbrowser.open('https://www.ncbi.nlm.nih.gov/', new=2)
+
+    def open_casper2_web_page(self):
+        webbrowser.open('http://casper2.org/', new=2)
+
+    #def open_endonuclease_web_page(self):
+       # class Ui(QtWidgets.QMainWindow):
+        #    def __init__(self):
+         #       super(Ui, self).__init__()
+          #      uic.loadUi('basic.ui', self)
+           #     self.show()
+       # app = QtWidgets.QApplication(sys.argv)
+       # window = Ui()
+       # app.exec_()
+
     @QtCore.pyqtSlot()
     def view_results(self):
         self.hide()
@@ -1369,7 +1399,6 @@ class CMainWindow(QtWidgets.QMainWindow):
 
 
 
-
 # ----------------------------------------------------------------------------------------------------- #
 # =========================================================================================
 # CLASS NAME: StartupWindow
@@ -1383,13 +1412,13 @@ class StartupWindow(QtWidgets.QDialog):
     def __init__(self):
 
         super(StartupWindow, self).__init__()
-        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'startupCASPER.ui'), self)
+        uic.loadUi('startupCASPER.ui', self)
         self.setWindowTitle('WELCOME TO CASPER!')
         self.setWindowModality(2)  # sets the modality of the window to Application Modal
         #self.make_window = annotations_Window()
         #---Button Modifications---#
-        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
-        pixmap = QtGui.QPixmap(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'mainart.jpg'))
+        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
+        pixmap = QtGui.QPixmap('mainart.jpg')
         self.labelforart.setPixmap(pixmap)
         self.pushButton_2.setDefault(True)
         # Check to see the operating system you are on and change this in Global Settings:
@@ -1433,13 +1462,17 @@ class StartupWindow(QtWidgets.QDialog):
                 GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
                 self.re_write_dir()
                 GlobalSettings.mainWindow.launch_newGenome()
+                GlobalSettings.mainWindow.launch_newEndonuclease()
                 self.close()
             else:
                 QtWidgets.QMessageBox.question(self, "Not a directory", "The directory you selected does not exist.",
                                                                                     QtWidgets.QMessageBox.Ok)
 
     def check_dir(self):
-        cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
+        if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
+            cspr_info = open(self.info_path+"\\CASPERinfo",'r+')
+        else:
+            cspr_info = open(self.info_path+"/CASPERinfo", 'r+')
         cspr_info = cspr_info.read()
         lines = cspr_info.split('\n')
         line = ""
@@ -1453,10 +1486,10 @@ class StartupWindow(QtWidgets.QDialog):
             return line[10:]
 
     def re_write_dir(self):
-        print(sys.argv[0])
-        print(os.path.abspath(sys.argv[0]))
-        print(os.path.dirname(os.path.abspath(sys.argv[0])))
-        cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
+        if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
+            cspr_info = open(self.info_path+"\\CASPERinfo",'r+')
+        else:
+            cspr_info = open(self.info_path+"/CASPERinfo", 'r+')
         cspr_info_text = cspr_info.read()
         cspr_info_text = cspr_info_text.split('\n')
         full_doc = ""
@@ -1472,7 +1505,10 @@ class StartupWindow(QtWidgets.QDialog):
                 full_doc = full_doc+"\n" + item
         full_doc = full_doc[1:]
         cspr_info.close()
-        cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
+        if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
+            cspr_info = open(self.info_path+"\\CASPERinfo",'w+')
+        else:
+            cspr_info = open(self.info_path+"/CASPERinfo", 'w+')
         cspr_info.write(full_doc)
 
         cspr_info.close()
@@ -1507,7 +1543,6 @@ class StartupWindow(QtWidgets.QDialog):
 
 if __name__ == '__main__':
     #enable DPI scaling
-    print((os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo")))
     GlobalSettings.appdir = os.getcwd() #used as global constant
 
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
