@@ -45,7 +45,7 @@
      <rect>
       <x>12</x>
       <y>12</y>
-      <width>191</width>
+      <width>201</width>
       <height>50</height>
      </rect>
     </property>
@@ -64,9 +64,9 @@
    <widget class="QLabel" name="casperDetail">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>350</x>
       <y>20</y>
-      <width>521</width>
+      <width>511</width>
       <height>41</height>
      </rect>
     </property>
@@ -95,15 +95,15 @@
    <widget class="QLabel" name="versionNum">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>40</y>
+      <x>210</x>
+      <y>38</y>
       <width>51</width>
-      <height>18</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>15</pointsize>
+      <pointsize>13</pointsize>
      </font>
     </property>
     <property name="text">
@@ -116,7 +116,7 @@
       <x>12</x>
       <y>234</y>
       <width>411</width>
-      <height>24</height>
+      <height>22</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -151,8 +151,8 @@
      <rect>
       <x>12</x>
       <y>170</y>
-      <width>294</width>
-      <height>29</height>
+      <width>275</width>
+      <height>28</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -191,7 +191,7 @@
      <rect>
       <x>357</x>
       <y>187</y>
-      <width>191</width>
+      <width>162</width>
       <height>20</height>
      </rect>
     </property>
@@ -204,8 +204,8 @@
      <rect>
       <x>12</x>
       <y>89</y>
-      <width>489</width>
-      <height>29</height>
+      <width>488</width>
+      <height>28</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -238,8 +238,8 @@
      <rect>
       <x>538</x>
       <y>282</y>
-      <width>334</width>
-      <height>24</height>
+      <width>300</width>
+      <height>22</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -324,7 +324,7 @@
      <rect>
       <x>538</x>
       <y>377</y>
-      <width>225</width>
+      <width>215</width>
       <height>59</height>
      </rect>
     </property>
@@ -434,9 +434,9 @@
    <widget class="QComboBox" name="Add_Orgo_Combo">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>120</y>
-      <width>141</width>
+      <x>669</x>
+      <y>121</y>
+      <width>104</width>
       <height>26</height>
      </rect>
     </property>
@@ -457,10 +457,10 @@
    <widget class="QLabel" name="Added_Org_Label">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>160</y>
-      <width>121</width>
-      <height>21</height>
+      <x>672</x>
+      <y>157</y>
+      <width>109</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -470,9 +470,9 @@
    <widget class="QComboBox" name="Added_Org_Combo">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>180</y>
-      <width>141</width>
+      <x>669</x>
+      <y>185</y>
+      <width>104</width>
       <height>26</height>
      </rect>
     </property>
@@ -493,9 +493,9 @@
    <widget class="QLabel" name="Add_org_Label">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>100</y>
-      <width>181</width>
+      <x>672</x>
+      <y>89</y>
+      <width>155</width>
       <height>16</height>
      </rect>
     </property>
@@ -521,7 +521,7 @@
      <rect>
       <x>12</x>
       <y>455</y>
-      <width>250</width>
+      <width>249</width>
       <height>32</height>
      </rect>
     </property>
@@ -567,7 +567,7 @@
       <x>207</x>
       <y>523</y>
       <width>144</width>
-      <height>31</height>
+      <height>32</height>
      </rect>
     </property>
     <property name="text">
@@ -604,7 +604,7 @@
      <rect>
       <x>700</x>
       <y>310</y>
-      <width>101</width>
+      <width>83</width>
       <height>18</height>
      </rect>
     </property>
@@ -621,9 +621,9 @@
    <widget class="QRadioButton" name="feature_table_button">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>550</x>
       <y>340</y>
-      <width>121</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -655,7 +655,7 @@
      <rect>
       <x>730</x>
       <y>340</y>
-      <width>71</width>
+      <width>51</width>
       <height>20</height>
      </rect>
     </property>
@@ -702,7 +702,7 @@
      <x>0</x>
      <y>0</y>
      <width>942</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -752,9 +752,10 @@
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
-     <string>Window</string>
+     <string>Web Links</string>
     </property>
-    <addaction name="actionNew_CASPER_Window"/>
+    <addaction name="actionNCBI"/>
+    <addaction name="actionCasper2"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -874,9 +875,14 @@
     <string>Complete Target Analysis</string>
    </property>
   </action>
-  <action name="actionNew_CASPER_Window">
+  <action name="actionNCBI">
    <property name="text">
-    <string>New CASPER Window</string>
+    <string>National Center for BioTechnology Information</string>
+   </property>
+  </action>
+  <action name="actionCasper2">
+   <property name="text">
+    <string>Casper2</string>
    </property>
   </action>
   <action name="actionCo_Targeting">
