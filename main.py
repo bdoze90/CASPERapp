@@ -1462,7 +1462,6 @@ class StartupWindow(QtWidgets.QDialog):
                 GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
                 self.re_write_dir()
                 GlobalSettings.mainWindow.launch_newGenome()
-                GlobalSettings.mainWindow.launch_newEndonuclease()
                 self.close()
             else:
                 QtWidgets.QMessageBox.question(self, "Not a directory", "The directory you selected does not exist.",
