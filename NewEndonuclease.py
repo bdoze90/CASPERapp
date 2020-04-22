@@ -39,7 +39,7 @@ class NewEndonuclease(QtWidgets.QDialog):
 		
 		
 		self.button.clicked.connect(self.printButtonPressed)
-	
+
 	def writeNewEndonuclease(self, newEndonucleaseStr):
 		with open(GlobalSettings.CASPER_FOLDER_LOCATION + '/CASPERinfo', 'r') as f, open(GlobalSettings.CASPER_FOLDER_LOCATION + "/new_file",'w') as f1:
    			for line in f:
@@ -59,14 +59,18 @@ class NewEndonuclease(QtWidgets.QDialog):
 		for letter in self.pam.text():
 			if (letter not in validPAM):
 				QtWidgets.QMessageBox.question(self,"Invalid PAM", "Invalid characters in PAM Sequence", QtWidgets.QMessageBox.Ok)
-				
 				return
 		if (';' in self.name.text() or ';' in self.abbr.text() or ';' in self.pam.text()):
 			QtWidgets.QMessageBox.question(self,"Invalid Semicolon", "Invalid character used: ; ", QtWidgets.QMessageBox.Ok)
 			return
 
-		if(self.name.text() == "" or self.abbr.text() == "" or self.PAM.text == ""):
+		if(self.name.text() == "" or self.abbr.text() == "" or self.pam.text == ""):
 			QtWidgets.QMessageBox.question(self,"Empty Field", "Please fill in all fields", QtWidgets.QMessageBox.Ok)
+			return
+
+		if(self.pam5.isChecked() != True and self.pam3.isChecked() != True):
+			QtWidgets.QMessageBox.question(self,"Empty Radio", "Please choose either 5'PAM or 3'PAM", QtWidgets.QMessageBox.Ok)
+			return
 
 		if (self.pam5.isChecked() == False):
 			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '5' + ';' + self.name.text() + ';' + 'U-A' + ';' +  '1'
