@@ -1346,16 +1346,6 @@ class CMainWindow(QtWidgets.QMainWindow):
     def open_casper2_web_page(self):
         webbrowser.open('http://casper2.org/', new=2)
 
-    #def open_endonuclease_web_page(self):
-       # class Ui(QtWidgets.QMainWindow):
-        #    def __init__(self):
-         #       super(Ui, self).__init__()
-          #      uic.loadUi('basic.ui', self)
-           #     self.show()
-       # app = QtWidgets.QApplication(sys.argv)
-       # window = Ui()
-       # app.exec_()
-
     @QtCore.pyqtSlot()
     def view_results(self):
         self.hide()

@@ -19,9 +19,9 @@ class NewEndonuclease(QtWidgets.QDialog):
 		uic.loadUi('newendonuclease.ui', self)
 		self.setWindowTitle('New Endonuclease')
 		self.k = KEGG()
+		self.reshow = False
 		#self.info_path = info_path
 		
-		validPAM = ('A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y')
 		
 		self.button = self.findChild(QtWidgets.QDialogButtonBox, 'buttonBox') # Find the button
 		
@@ -36,7 +36,8 @@ class NewEndonuclease(QtWidgets.QDialog):
 		self.comboBox2 = self.findChild(QtWidgets.QComboBox, 'comboBox_2')
 		self.comboBox1.addItem('CRISPR_SCAN_DATA ')
 		self.comboBox2.addItem('HSU_MATRIX_spCAS9-2013 ')	
-	
+		
+		
 		self.button.clicked.connect(self.printButtonPressed)
 	
 	def writeNewEndonuclease(self, newEndonucleaseStr):
@@ -52,7 +53,21 @@ class NewEndonuclease(QtWidgets.QDialog):
 		# This is executed when the button is pressed
 		seed = '16'
 		length = '20';
-		
+		validPAM = ('A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y')
+
+		#error checks		
+		for letter in self.pam.text():
+			if (letter not in validPAM):
+				QtWidgets.QMessageBox.question(self,"Invalid PAM", "Invalid characters in PAM Sequence", QtWidgets.QMessageBox.Ok)
+				
+				return
+		if (';' in self.name.text() or ';' in self.abbr.text() or ';' in self.pam.text()):
+			QtWidgets.QMessageBox.question(self,"Invalid Semicolon", "Invalid character used: ; ", QtWidgets.QMessageBox.Ok)
+			return
+
+		if(self.name.text() == "" or self.abbr.text() == "" or self.PAM.text == ""):
+			QtWidgets.QMessageBox.question(self,"Empty Field", "Please fill in all fields", QtWidgets.QMessageBox.Ok)
+
 		if (self.pam5.isChecked() == False):
 			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '5' + ';' + self.name.text() + ';' + 'U-A' + ';' +  '1'
 			self.writeNewEndonuclease(myString)
