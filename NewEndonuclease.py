@@ -19,9 +19,7 @@ class NewEndonuclease(QtWidgets.QDialog):
 		uic.loadUi('newendonuclease.ui', self)
 		self.setWindowTitle('New Endonuclease')
 		self.k = KEGG()
-		self.reshow = False
-		#self.info_path = info_path
-		
+		self.error = False
 		
 		self.button = self.findChild(QtWidgets.QDialogButtonBox, 'buttonBox') # Find the button
 		
@@ -37,8 +35,13 @@ class NewEndonuclease(QtWidgets.QDialog):
 		self.comboBox1.addItem('CRISPR_SCAN_DATA ')
 		self.comboBox2.addItem('HSU_MATRIX_spCAS9-2013 ')	
 		
+		self.error = self.button.accepted.connect(self.printButtonPressed)
+		self.button.rejected.connect(print("REJECT"))
 		
-		self.button.clicked.connect(self.printButtonPressed)
+		if(self.error):
+			print("hello found error")
+		else:
+			print("hello no error")
 
 	def writeNewEndonuclease(self, newEndonucleaseStr):
 		with open(GlobalSettings.CASPER_FOLDER_LOCATION + '/CASPERinfo', 'r') as f, open(GlobalSettings.CASPER_FOLDER_LOCATION + "/new_file",'w') as f1:
@@ -54,23 +57,25 @@ class NewEndonuclease(QtWidgets.QDialog):
 		seed = '16'
 		length = '20';
 		validPAM = ('A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y')
+		self.error = False;
 
 		#error checks		
 		for letter in self.pam.text():
 			if (letter not in validPAM):
 				QtWidgets.QMessageBox.question(self,"Invalid PAM", "Invalid characters in PAM Sequence", QtWidgets.QMessageBox.Ok)
+				self.error = True
 				return
 		if (';' in self.name.text() or ';' in self.abbr.text() or ';' in self.pam.text()):
 			QtWidgets.QMessageBox.question(self,"Invalid Semicolon", "Invalid character used: ; ", QtWidgets.QMessageBox.Ok)
-			return
+			return True
 
 		if(self.name.text() == "" or self.abbr.text() == "" or self.pam.text == ""):
 			QtWidgets.QMessageBox.question(self,"Empty Field", "Please fill in all fields", QtWidgets.QMessageBox.Ok)
-			return
+			return True
 
 		if(self.pam5.isChecked() != True and self.pam3.isChecked() != True):
 			QtWidgets.QMessageBox.question(self,"Empty Radio", "Please choose either 5'PAM or 3'PAM", QtWidgets.QMessageBox.Ok)
-			return
+			return True
 
 		if (self.pam5.isChecked() == False):
 			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '5' + ';' + self.name.text() + ';' + 'U-A' + ';' +  '1'
