@@ -26,6 +26,7 @@ class NewEndonuclease(QtWidgets.QDialog):
 		self.name = self.findChild(QtWidgets.QLineEdit, 'lineEdit')
 		self.abbr = self.findChild(QtWidgets.QLineEdit, 'lineEdit_2')
 		self.pam = self.findChild(QtWidgets.QLineEdit, 'lineEdit_3')
+		self.systemType = self.findChild(QtWidgets.QLineEdit, 'lineEdit_4')
 		self.pam3 = self.findChild(QtWidgets.QRadioButton, 'radioButton')
 		self.pam5 = self.findChild(QtWidgets.QRadioButton, 'radioButton_2')
 		pamFlag = False;
@@ -68,7 +69,7 @@ class NewEndonuclease(QtWidgets.QDialog):
 				self.exec()
 				return True
 
-		if (';' in self.name.text() or ';' in self.abbr.text() or ';' in self.pam.text()):
+		if (';' in self.name.text() or ';' in self.abbr.text() or ';' in self.pam.text() or ';' in self.systemType.text()):
 			QtWidgets.QMessageBox.question(self,"Invalid Semicolon", "Invalid character used: ; ", QtWidgets.QMessageBox.Ok)
 			self.exec()
 			return True
@@ -84,11 +85,11 @@ class NewEndonuclease(QtWidgets.QDialog):
 			return True
 
 		if (self.pam5.isChecked() == False):
-			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '5' + ';' + self.name.text() + ';' + 'U-A' + ';' +  '1'
+			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '5' + ';' + self.name.text() + ';' + 'U-A' + ';' + self.systemType.text() + ';' + '1'
 			self.writeNewEndonuclease(myString)
 			#print(myString)
 		elif (self.pam3.isChecked() == False):
-			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '3' + ';' + self.name.text() + ';' + 'U-A' + ';' +  '1'
+			myString = self.abbr.text() + ';' + self.pam.text() + ';' + seed + ';' + length + ';' + '3' + ';' + self.name.text() + ';' + 'U-A' + ';' + self.systemType.text() + ';' + '1'
 			self.writeNewEndonuclease(myString)
 			#print(myString)
 		else:
