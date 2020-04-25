@@ -295,7 +295,6 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.actionNCBI.triggered.connect(self.open_ncbi_web_page)
         self.actionCasper2.triggered.connect(self.open_casper2_web_page)
         self.actionNCBI_BLAST.triggered.connect(self.open_ncbi_blast_web_page)
-        #self.actionUpload_New_Endonuclease.triggered.connect(self.open_new_endonuclease_web_page)
 
 	# --- Setup for Gene Entry Field --- #
         self.geneEntryField.setPlainText("Example Inputs: \n"
