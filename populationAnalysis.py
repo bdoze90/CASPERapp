@@ -257,7 +257,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
             f = open(GlobalSettings.appdir + "\\CASPERinfo")
         else:
-            f = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPERinfo'))
+            f = open(GlobalSettings.appdir + '/CASPERinfo')
         while True:
             line = f.readline()
             if line.startswith('ENDONUCLEASES'):

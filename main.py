@@ -43,8 +43,8 @@ import populationAnalysis
 class AnnotationsWindow(QtWidgets.QMainWindow):
     def __init__(self, info_path):
         super(AnnotationsWindow, self).__init__()
-        uic.loadUi('Annotation Details.ui', self)
-        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
+        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'Annotation Details.ui'), self)
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
         self.Submit_button.clicked.connect(self.submit)
         self.Go_Back_Button.clicked.connect(self.go_Back)
         self.select_all_checkbox.stateChanged.connect(self.select_all_genes)
@@ -157,7 +157,7 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         # go through and do the selection
         if self.type == 'kegg':
             for i in range(self.tableWidget.rowCount()):
-                self.tableWidget.cellWidget(i, 2).setChecked(select_all)   
+                self.tableWidget.cellWidget(i, 2).setChecked(select_all)
         elif self.type == 'nonkegg':
             for i in range(self.tableWidget.rowCount()):
                 self.tableWidget.cellWidget(i,4).setChecked(select_all)
@@ -182,7 +182,7 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         if index == 0:
             return -1
         index= 0
-        
+
         for sValues in mainWindow.searches:
             for definition in mainWindow.searches[sValues]:
                 defin_obj = QtWidgets.QTableWidgetItem(definition)
@@ -235,7 +235,7 @@ class CMainWindow(QtWidgets.QMainWindow):
     def __init__(self,info_path):
 
         super(CMainWindow, self).__init__()
-        uic.loadUi('CASPER_main.ui', self)
+        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPER_main.ui'), self)
         self.dbpath = ""
         self.info_path = info_path
         self.data = {} # each org genome name and the endonucleases along with it
@@ -254,7 +254,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.organismDict = dict() # the dictionary for the links to download. Key is the description of the organism, value is the ID that can be found in link_list
 
         # --- Button Modifications --- #
-        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
         self.pushButton_FindTargets.clicked.connect(self.gather_settings)
         self.pushButton_ViewTargets.clicked.connect(self.view_results)
         self.pushButton_ViewTargets.setEnabled(False)
@@ -266,12 +266,13 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.Annotation_Ownfile.clicked.connect(self.change_annotation)
         self.NCBI_Select.clicked.connect(self.change_annotation)
         self.actionUpload_New_Genome.triggered.connect(self.launch_newGenome)
-        self.actionUpload_New_Endonuclease.triggered.connect(self.launch_newEndonuclease)        
+        self.actionUpload_New_Endonuclease.triggered.connect(self.launch_newEndonuclease)
         self.Add_Orgo_Button.clicked.connect(self.add_Orgo)
         self.Remove_Organism_Button.clicked.connect(self.remove_Orgo)
         self.endoChoice.currentIndexChanged.connect(self.endo_Changed)
         self.GenerateLibrary.clicked.connect(self.prep_genlib)
         self.actionExit.triggered.connect(self.close_app)
+        self.visit_repo.triggered.connect(self.visit_repo_func)
 
 
         self.Search_Input.setEnabled(False)
@@ -296,6 +297,9 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.actionCasper2.triggered.connect(self.open_casper2_web_page)
         self.actionNCBI_BLAST.triggered.connect(self.open_ncbi_blast_web_page)
 
+        self.Question_Button_add_org.clicked.connect(self.add_org_popup)
+        self.Confused_Button.clicked.connect(self.annotation_information)
+
 	# --- Setup for Gene Entry Field --- #
         self.geneEntryField.setPlainText("Example Inputs: \n"
                                                "Gene (LocusID): YOL086C  *for Saccharomyces Cerevisiae ADH1 gene* \n"
@@ -317,8 +321,6 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.genLib = genLibrary()
         self.myClosingWindow = closingWindow()
 
-        #self.newGenome.process.finished.connect(self.update_dropdowns)
-        self.newGenome.contButton.clicked.connect(self.update_dropdowns)
 
     def endo_Changed(self):
         i=3
@@ -402,12 +404,12 @@ class CMainWindow(QtWidgets.QMainWindow):
 
                 # launch generateLib
                 self.progressBar.setValue(100)
-                
+
                 # calculate the total number of matches found
                 tempSum = 0
                 for item in self.searches:
                     tempSum += len(self.searches[item])
-                
+
                 # warn the user if the number is greater than 50
                 if tempSum > 50:
                     error = QtWidgets.QMessageBox.question(self, "Many matches Found",
@@ -590,7 +592,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                    , QtWidgets.QMessageBox.Ok)
                 self.progressBar.setValue(0)
                 return
-            
+
             # ncbi file search code
             if self.NCBI_Select.isChecked():
                 type_of_annotation_file = ""
@@ -751,12 +753,12 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                    QtWidgets.QMessageBox.Ok)
                     self.progressBar.setValue(0)
                     return
-                # append the data into the checked_info 
+                # append the data into the checked_info
                 tempString = 'chrom: ' + str(searchIndicies[0]) + ' start: ' + str(searchIndicies[1]) + ' end: ' + str(searchIndicies[2])
                 self.checked_info[tempString] = (int(searchIndicies[0]), int(searchIndicies[1]), int(searchIndicies[2]))
 
             self.progressBar.setValue(50)
-            
+
 
             self.Results.transfer_data(self.shortHand[full_org], [str(self.endoChoice.currentText())], os.getcwd(),
                                    self.checked_info, self.check_ntseq_info, "")
@@ -775,7 +777,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                 self.progressBar.setValue(0)
                 return
 
-            # give a warning if the length of the sequence is long 
+            # give a warning if the length of the sequence is long
             if len(inputstring) > 30000:
                 error = QtWidgets.QMessageBox.question(self, "Large Sequence Detected",
                                                        "The sequence given is a large one, and could slow down the process.\n\n"
@@ -842,9 +844,9 @@ class CMainWindow(QtWidgets.QMainWindow):
             pamdir = False
         else:
             pamdir = True
-            
+
         output_location = GlobalSettings.CSPR_DB
-        path_to_info = GlobalSettings.appdir + '/CASPERinfo'
+        path_to_info = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPERinfo')
         orgName = 'temp org'
         gRNA_length = my_seq.endo_info[myEndoChoice][2]
         seed_length = my_seq.endo_info[myEndoChoice][1]
@@ -872,7 +874,8 @@ class CMainWindow(QtWidgets.QMainWindow):
         seq_search_process.finished.connect(finished)
 
     def launch_newGenome(self):
-       self.newGenome.show()
+        self.hide()
+        self.newGenome.show()
 
     def launch_newEndonuclease(self):
        self.newEndonuclease.show()
@@ -1025,7 +1028,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             mySeq = SeqTranslate()
             seq_checker = False
             # time to reset the endo's
-            self.endoChoice.clear() 
+            self.endoChoice.clear()
             for item in mySeq.endo_info:
                 self.endoChoice.addItem(item)
         else:
@@ -1336,14 +1339,31 @@ class CMainWindow(QtWidgets.QMainWindow):
         GlobalSettings.pop_Analysis.show()
         GlobalSettings.mainWindow.hide()
 
+    def add_org_popup(self):
+        info = "This functionality will allow users to use different organisms for off-target analysis in a future " \
+               "version of the software. If you need to run analysis on multiple organisms, please use the Population " \
+               "Analysis feature."
+        QtWidgets.QMessageBox.information(self, "Add Organism Information", info, QtWidgets.QMessageBox.Ok)
+
+    def annotation_information(self):
+        info = "Annotation files for searching for targets on a gene/locus basis can be selected here using either KEGG " \
+               "or NCBI databases, or uploading your own file. Note that KEGG searches are best done with exact matches " \
+               "(e.g include strain designation), whereas NCBI will often return multiple assemblies of the same species. " \
+               "If you have trouble deciding on the search returned annotation, go to the website, download the annotation " \
+               "file to your local computer and choose ‘Choose Annotation File’"
+        QtWidgets.QMessageBox.information(self, "Annotation Information", info, QtWidgets.QMessageBox.Ok)
+
     def open_ncbi_blast_web_page(self):
         webbrowser.open('https://blast.ncbi.nlm.nih.gov/Blast.cgi', new=2)
-    
+
     def open_ncbi_web_page(self):
         webbrowser.open('https://www.ncbi.nlm.nih.gov/', new=2)
 
     def open_casper2_web_page(self):
         webbrowser.open('http://casper2.org/', new=2)
+
+    def visit_repo_func(self):
+        webbrowser.open('https://github.com/TrinhLab/CASPERapp')
 
     @QtCore.pyqtSlot()
     def view_results(self):
@@ -1376,12 +1396,6 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.myClosingWindow.get_files()
         self.myClosingWindow.show()
 
-    def update_dropdowns(self):
-        self.orgChoice.currentIndexChanged.disconnect()
-        self.orgChoice.clear()
-        self.endoChoice.clear()
-        self.getData()
-
     def close_app(self):
         self.closeFunction()
         self.close()
@@ -1401,13 +1415,12 @@ class StartupWindow(QtWidgets.QDialog):
     def __init__(self):
 
         super(StartupWindow, self).__init__()
-        uic.loadUi('startupCASPER.ui', self)
-        self.setWindowTitle('WELCOME TO CASPER!')
+        uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'startupCASPER.ui'), self)
         self.setWindowModality(2)  # sets the modality of the window to Application Modal
         #self.make_window = annotations_Window()
         #---Button Modifications---#
-        self.setWindowIcon(QtGui.QIcon("cas9image.png"))
-        pixmap = QtGui.QPixmap('mainart.jpg')
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
+        pixmap = QtGui.QPixmap(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'mainart.jpg'))
         self.labelforart.setPixmap(pixmap)
         self.pushButton_2.setDefault(True)
         # Check to see the operating system you are on and change this in Global Settings:
@@ -1460,7 +1473,7 @@ class StartupWindow(QtWidgets.QDialog):
         if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
             cspr_info = open(self.info_path+"\\CASPERinfo",'r+')
         else:
-            cspr_info = open(self.info_path+"/CASPERinfo", 'r+')
+            cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
         cspr_info = cspr_info.read()
         lines = cspr_info.split('\n')
         line = ""
@@ -1477,7 +1490,7 @@ class StartupWindow(QtWidgets.QDialog):
         if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
             cspr_info = open(self.info_path+"\\CASPERinfo",'r+')
         else:
-            cspr_info = open(self.info_path+"/CASPERinfo", 'r+')
+            cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
         cspr_info_text = cspr_info.read()
         cspr_info_text = cspr_info_text.split('\n')
         full_doc = ""
@@ -1496,7 +1509,7 @@ class StartupWindow(QtWidgets.QDialog):
         if GlobalSettings.OPERATING_SYSTEM_ID == "Windows":
             cspr_info = open(self.info_path+"\\CASPERinfo",'w+')
         else:
-            cspr_info = open(self.info_path+"/CASPERinfo", 'w+')
+            cspr_info = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"), 'r+')
         cspr_info.write(full_doc)
 
         cspr_info.close()
@@ -1531,7 +1544,8 @@ class StartupWindow(QtWidgets.QDialog):
 
 if __name__ == '__main__':
     #enable DPI scaling
-    GlobalSettings.appdir = os.getcwd() #used as global constant
+    GlobalSettings.appdir = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0]))) #used as global constant
+    print(GlobalSettings.appdir)
 
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 

@@ -1,5 +1,3 @@
-#make this the file with all the tedious KEGG and Uniprot parsing code
-
 from bioservices import KEGG
 import requests
 from bs4 import BeautifulSoup
@@ -14,6 +12,7 @@ class Kegg:
 
     k = KEGG()
     location = "http://www.genome.jp/dbget-bin/www_bget?"
+    sense = True
 
     def gene_locator(self, gene_id):                        #gene locator - recives the gene id and returns the location of the gene
         self.sense = True
@@ -94,7 +93,7 @@ class Kegg:
             return -1
 
     def translate_chromosome(self, chr):                                                        #Translate Chromosome - recives chromosome as letter or roman numeral and returns it as a number
-        numbers = ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16')      #Create a multi dementional list of all the ways to specify chromosome 
+        numbers = ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16')      #Create a multi dementional list of all the ways to specify chromosome
         letters = ('A','B','C','D','E','F','G','H')
         roman = ('I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII', 'XIV',
                  'XV', 'XVI')
@@ -107,7 +106,7 @@ class Kegg:
                 return int(numbers[ind])
         return -1
 
-    def revcom(self, sequence):                                       #Revcom - recives a sequance and returns the inverse of the sequance            
+    def revcom(self, sequence):                                       #Revcom - recives a sequance and returns the inverse of the sequance
         revseq = ""
         change = {'A':'T',                                            #create Dictionary to allow change between nucleotide pair
                   'T':'A',

@@ -34,7 +34,8 @@ a = Analysis(['main.py'],
 				('startupCASPER.ui', '.'),
 				('pop_analysis_fna_combiner.ui', '.'),
 				('name_form.ui', '.'),
-				('name_form2.ui', '.')
+				('name_form2.ui', '.'),
+				('newendonuclease.ui', '.')
 
 			 ],
              hiddenimports=[
@@ -43,7 +44,8 @@ a = Analysis(['main.py'],
 				'repeats_vs_chromo',
 				'pop_analysis_3dgraph',
 				'pop_analysis_repeats_graph',
-				'pop_analysis_venn_diagram'
+				'pop_analysis_venn_diagram',
+				'pkg_resources.py2_warn'
 			],
              hookspath=[],
              runtime_hooks=[],

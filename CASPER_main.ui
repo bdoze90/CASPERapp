@@ -95,8 +95,8 @@
    <widget class="QLabel" name="versionNum">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>38</y>
+      <x>170</x>
+      <y>30</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -107,7 +107,7 @@
      </font>
     </property>
     <property name="text">
-     <string>V 1.0</string>
+     <string>V 1.1</string>
     </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -702,7 +702,7 @@
      <x>0</x>
      <y>0</y>
      <width>942</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -761,6 +761,7 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="visit_repo"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -882,7 +883,7 @@
   </action>
   <action name="actionCasper2">
    <property name="text">
-    <string>Casper2</string>
+    <string>CASPER Online</string>
    </property>
   </action>
   <action name="actionCo_Targeting">
@@ -890,11 +891,16 @@
     <string>Co-Targeting</string>
    </property>
   </action>
+  <action name="visit_repo">
+   <property name="text">
+    <string>Visit Repository</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="type_of_annotation_file"/>
   <buttongroup name="refseq_genbank_buttonGroup"/>
+  <buttongroup name="type_of_annotation_file"/>
  </buttongroups>
 </ui>
