@@ -16,7 +16,7 @@ class NewEndonuclease(QtWidgets.QDialog):
 	
 	def __init__(self):
 		super(NewEndonuclease, self).__init__()
-		uic.loadUi('newendonuclease.ui', self)
+		uic.loadUi(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'newendonuclease.ui'), self)
 		self.setWindowTitle('New Endonuclease')
 		self.k = KEGG()
 		self.error = False
@@ -47,12 +47,12 @@ class NewEndonuclease(QtWidgets.QDialog):
 		#		print("hello no error")
 
 	def writeNewEndonuclease(self, newEndonucleaseStr):
-		with open(GlobalSettings.CASPER_FOLDER_LOCATION + '/CASPERinfo', 'r') as f, open(GlobalSettings.CASPER_FOLDER_LOCATION + "/new_file",'w') as f1:
+		with open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPERinfo')) as f, open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'new_file.txt')) as f1:
 			for line in f:
 				f1.write(line)
 				if 'ENDONUCLEASES' in line:
 					f1.write(newEndonucleaseStr+'\n')  # Move f1.write(line) above, to write above instead
-		os.rename(GlobalSettings.CASPER_FOLDER_LOCATION + "/new_file", GlobalSettings.CASPER_FOLDER_LOCATION + "/CASPERinfo")  # Rename the new file  		
+		os.rename(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0]))), os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'CASPERinfo'))  # Rename the new file
 
 		
 	def printButtonPressed(self):

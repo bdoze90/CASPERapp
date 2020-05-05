@@ -280,7 +280,7 @@
       <x>20</x>
       <y>590</y>
       <width>75</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -316,7 +316,7 @@
       <x>274</x>
       <y>30</y>
       <width>161</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -329,7 +329,7 @@
       <x>490</x>
       <y>40</y>
       <width>171</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -345,10 +345,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>990</x>
-      <y>220</y>
+      <x>1000</x>
+      <y>210</y>
       <width>121</width>
-      <height>21</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -361,10 +361,10 @@
    <widget class="QPushButton" name="gene_viewer_settings_button">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>820</x>
       <y>190</y>
       <width>161</width>
-      <height>22</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
