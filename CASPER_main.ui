@@ -732,6 +732,7 @@
     <addaction name="actionUpload_New_Genome"/>
     <addaction name="actionUpload_New_Endonuclease"/>
     <addaction name="actionChange_Directory"/>
+    <addaction name="actionOpen_Genome_Browser"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -839,6 +840,11 @@
   <action name="actionUpload_New_Endonuclease">
    <property name="text">
     <string>Upload New Endonuclease</string>
+   </property>
+  </action>
+  <action name="actionOpen_Genome_Browser">
+   <property name="text">
+    <string>Open Genome Browser</string>
    </property>
   </action>
   <action name="actionChange_Directory">

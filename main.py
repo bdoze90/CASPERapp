@@ -11,6 +11,9 @@ from closingWin import closingWindow
 from Results import Results, geneViewerSettings
 from NewGenome import NewGenome, NCBI_Search_File
 from NewEndonuclease import NewEndonuclease
+from kishanAnnotation import createGraph
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtCore import QDir, QUrl
 
 import webbrowser
 import requests
@@ -267,6 +270,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.NCBI_Select.clicked.connect(self.change_annotation)
         self.actionUpload_New_Genome.triggered.connect(self.launch_newGenome)
         self.actionUpload_New_Endonuclease.triggered.connect(self.launch_newEndonuclease)
+        self.actionOpen_Genome_Browser.triggered.connect(self.launch_newGenomeBrowser)
         self.Add_Orgo_Button.clicked.connect(self.add_Orgo)
         self.Remove_Organism_Button.clicked.connect(self.remove_Orgo)
         self.endoChoice.currentIndexChanged.connect(self.endo_Changed)
@@ -880,6 +884,10 @@ class CMainWindow(QtWidgets.QMainWindow):
     def launch_newEndonuclease(self):
        self.newEndonuclease.show()
 
+    def launch_newGenomeBrowser(self):
+       print("creating graph")
+       createGraph(self)
+
     # this function does the same stuff that the other collect_table_data does, but works with the other types of files
     def collect_table_data_nonkegg(self):
         # start out the same as the other collect_table_data
@@ -1205,6 +1213,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                 return
             # add each item found into the dropdown menu
             for item in self.organismDict:
+                print(item)
                 self.Annotations_Organism.addItem(item)
            # print("Done searching NCBI")
 
