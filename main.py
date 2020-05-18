@@ -1382,7 +1382,7 @@ class StartupWindow(QtWidgets.QDialog):
         #self.make_window = annotations_Window()
         #---Button Modifications---#
         self.setWindowIcon(QtGui.QIcon("cas9image.png"))
-        pixmap = QtGui.QPixmap('mainart.jpg')
+        pixmap = QtGui.QPixmap('CASPER-logo.jpg')
         self.labelforart.setPixmap(pixmap)
         self.pushButton_2.setDefault(True)
         # Check to see the operating system you are on and change this in Global Settings:
@@ -1488,7 +1488,7 @@ class StartupWindow(QtWidgets.QDialog):
             os.chdir(self.gdirectory)
             found = GlobalSettings.mainWindow.getData()
             if found==False:
-                QtWidgets.QMessageBox.question(self, "No .cspr files", "Please select a directory that contains .cspr files.",
+                QtWidgets.QMessageBox.question(self, "No .cspr files", "Please select a directory that contains cspr files.",
                                                QtWidgets.QMessageBox.Ok)
                 return
             GlobalSettings.filedir = self.gdirectory

@@ -459,8 +459,8 @@ class Multitargeting(QtWidgets.QMainWindow):
             self.min_chromo.clear()
             self.ready_chromo_min_max = True
             self.fill_min_max(False)
-            QtWidgets.QMessageBox.question(self, "Maximum cant be less than Minimum",
-                                           "The Minimum number of repeats cant be more than the Maximum",
+            QtWidgets.QMessageBox.question(self, "Maximum Can't Be Less Than Minimum",
+                                           "The minimum number of repeats can't be more than the maximum.",
                                            QtWidgets.QMessageBox.Ok)
             self.fill_seed_id_chrom()
             return
@@ -474,8 +474,8 @@ class Multitargeting(QtWidgets.QMainWindow):
                 #temp = self.sq.compress(seed,64)
                 self.chromo_seed.addItem(str(self.sq.decompress64(seed, slength=seqLength, toseq= True)))
         if any==False:
-            QtWidgets.QMessageBox.question(self, "No matches found",
-                                           "No seed that is within the specifications could be found",
+            QtWidgets.QMessageBox.question(self, "No Matches Found",
+                                           "No seed that is within the specifications could be found.",
                                            QtWidgets.QMessageBox.Ok)
             self.ready_chromo_min_max = False
             self.max_chromo.clear()

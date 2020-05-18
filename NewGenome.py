@@ -76,7 +76,7 @@ class NewGenome(QtWidgets.QMainWindow):
             if not myFile[0].endswith(".fa") and not myFile[0].endswith(".fna") and not myFile[0].endswith(".gbff") and not myFile[0].endswith(".fasta"):
                 QtWidgets.QMessageBox.question(self, "File Selection Error",
                                                "You have selected an incorrect type of file. "
-                                               "Please choose a genbank, fasta, gbff, or a fna file.",
+                                               "Please choose a GenBank, .fasta, GBFF, or .fna file.",
                                                QtWidgets.QMessageBox.Ok)
                 return
             else:
@@ -166,7 +166,7 @@ class NewGenome(QtWidgets.QMainWindow):
         self.seed_len_box.setText(self.Endos[self.comboBoxEndo.currentText()][2])
 
     def findFasta(self):
-        choice = QtWidgets.QMessageBox.question(self, "Extract!", "Are you sure you want to Quit?",
+        choice = QtWidgets.QMessageBox.question(self, "Extract!", "Are you sure you want to quit?",
                                             QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
         if choice == QtWidgets.QMessageBox.Yes:
             sys.exit()
@@ -303,7 +303,7 @@ class NewGenome(QtWidgets.QMainWindow):
                 break
         if noCSPRFiles == True:
             error = QtWidgets.QMessageBox.question(self, "No CSPR File generated",
-                                                    "No CSPR file has been generate, thus the main program cannot run. Please create a CSPR file."
+                                                    "No CSPR file has been generated, thus the main program cannot run. Please create a CSPR file."
                                                     "Alternatively, you could quit the program. Would you like to quit?",
                                                     QtWidgets.QMessageBox.Yes |
                                                     QtWidgets.QMessageBox.No,
@@ -344,7 +344,7 @@ class NewGenome(QtWidgets.QMainWindow):
                 break
         if noCSPRFiles == True:
             error = QtWidgets.QMessageBox.question(self, "No CSPR File generated",
-                                                   "No CSPR file has been generate, thus the main program cannot run. Please create a CSPR file."
+                                                   "No CSPR file has been generated, thus the main program cannot run. Please create a CSPR file."
                                                    "Alternatively, you could quit the program. Would you like to quit?",
                                                    QtWidgets.QMessageBox.Yes |
                                                    QtWidgets.QMessageBox.No,

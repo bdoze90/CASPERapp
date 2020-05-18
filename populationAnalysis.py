@@ -129,7 +129,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             if item[0] not in tempD:
                 if counter != 0:
                     org_chrom_num.append(counter)
-                
+
                 counter = 1
                 tempD[item[0]] = org_index
                 org_index += 1
@@ -324,12 +324,12 @@ class Pop_Analysis(QtWidgets.QMainWindow):
                 # rules for selecting FNA/Fasta files
                 # check to make sure that the user selected at least 2 organisms, and 1 endonuclease
                 if len(selectedList) < 1 or self.endoBox.currentText() == 'None Selected':
-                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select at least 1 organism, and only 1 endonuclease",
+                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select at least 1 organism and only 1 endonuclease.",
                                                 QtWidgets.QMessageBox.Ok)
                     return
                 if len(selectedList) == 1:
                     error = QtWidgets.QMessageBox.question(self, "Only 1 Organism Selected",
-                                                            "Population Analysis works with multiple organisms, or a meta genome. If the file selected it not a meta genome, the program may not function correctly. Do you wish to continu?.\n\n"
+                                                            "Population Analysis works with multiple organisms, or a metagenome. If the file selected is not a metagenome, the program may not function correctly. Do you wish to continue? \n\n"
                                                             "Do you wish to continue?",
                                                             QtWidgets.QMessageBox.Yes |
                                                             QtWidgets.QMessageBox.No,
@@ -344,11 +344,11 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             # rules for selecting cspr files
             elif self.meta_genomic_cspr_checkbox.isChecked():
                 if len(selectedList) == 0:
-                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select one meta genome for Population Analysis.",
+                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select one metagenome for Population Analysis.",
                                                 QtWidgets.QMessageBox.Ok)
                     return
                 elif len(selectedList) > 1:
-                    QtWidgets.QMessageBox.question(self, "Too many Selected", "Only 1 meta genomic CSPR file is allowed to be selected",
+                    QtWidgets.QMessageBox.question(self, "Too Many Selected", "Only 1 metagenomic CSPR file is allowed to be selected.",
                                                 QtWidgets.QMessageBox.Ok)
                     return
 
@@ -726,14 +726,14 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
         # make sure the user inputs whats needed
         if self.orgName_line_edit.text() == '' or self.org_code_line_edit.text() == '' or self.orgNum_lineEdit.text() == '':
             QtWidgets.QMessageBox.question(self, "Missing Information",
-                                           "Please input an Organism Name, an Organism Code, and the number of Organisms you are analyzing.",
+                                           "Please input an organism name, an organism code, and the number of organisms you are analyzing.",
                                            QtWidgets.QMessageBox.Ok)
             return
-        
+
         # make sure the user inputs an integer for the number of organisms
         if not self.orgNum_lineEdit.text().isdigit():
             QtWidgets.QMessageBox.question(self, "Error",
-                                           "Organism Number must be integers only!",
+                                           "Organism number must be integers only!",
                                            QtWidgets.QMessageBox.Ok)
             return
 
@@ -744,8 +744,8 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
     def cancel_function(self):
         # check to see if the sequencer is running. If so ask the user if they wish to close out
         if self.proc_running:
-            error = QtWidgets.QMessageBox.question(self, "Sequencer is Running",
-                                                   "Sequencer is running. Closing this window will cancel that process, and return to the Population Analysis window. .\n\n"
+            error = QtWidgets.QMessageBox.question(self, "Sequencer Is Running",
+                                                   "Sequencer is running. Closing this window will cancel that process and return to the Population Analysis window. \n\n"
                                                    "Do you wish to continue?",
                                                    QtWidgets.QMessageBox.Yes |
                                                    QtWidgets.QMessageBox.No,
@@ -783,7 +783,7 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
             file_stream = open(file, 'r')
 
             buf = file_stream.readline()
-            
+
             spaceIndex = buf.find(' ') + 1
             commaIndex = buf.find(',')
             orgName = buf[spaceIndex:commaIndex]
@@ -876,7 +876,7 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
         # get the notes here
         for i in range(len(self.ref_para_list)):
             secondCode = secondCode + self.ref_para_list[i][0] + ',' + self.ref_para_list[i][1] + '|'
-            secondCode = secondCode.replace('\n', '') 
+            secondCode = secondCode.replace('\n', '')
         #------------------done getting the arguments------------------------------
 
         # get the program path
