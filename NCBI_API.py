@@ -30,8 +30,56 @@ class Assembly:
         self.orgName_dict = dict()
         #Moved the code from this to its own function so that I can return the database URL
 
-    #this function gets a list of GCA's and a list of database URLs for downloading
+    ####### Gets the genbank .gbff NCBI annotation file
+    def getNcbiAnnotation(self, organism, databse, ncbi_ret_max):
+        ################## start of CASPERweb NCBI API ###################################
+        start = time.time()
+        
+        userInput = organism
+        handle = Entrez.esearch(db="assembly", term=userInput , idtype="acc", retmax=ncbi_ret_max)
+        record = Entrez.read(handle)
+
+        organismData = []
+        linksList = []
+
+        NumOrganisms = len(record['IdList'])
+        if NumOrganisms == 0:
+            return -1
+  
+        #creating a string for all the uids
+        uidSearch = record['IdList'][0]
+        for uid in record['IdList'][1:]:
+            uidSearch = uidSearch + ',' + uid
+        # print('uid search: ', uidSearch)
+
+        #grabbing all records for all organisms using their uid
+        handle = Entrez.efetch(db="assembly", id=uidSearch, rettype="docsum")
+        record1 = Entrez.read(handle)
+
+        # print(record1)
+
+        for x in range(NumOrganisms):
+            # print("------------------------- NEW RECORD ----------------------")
+            # print(record1['DocumentSummarySet']['DocumentSummary'][x])
+            if record1['DocumentSummarySet']['DocumentSummary'][x]['FtpPath_GenBank']:
+                myDict = {}
+                myDict['Organism'] = record1['DocumentSummarySet']['DocumentSummary'][x]['Organism']
+                myDict['AssemblyAccession'] = record1['DocumentSummarySet']['DocumentSummary'][x]['AssemblyAccession']
+                myDict['genbank_link'] = record1['DocumentSummarySet']['DocumentSummary'][x]['FtpPath_GenBank']
+                organismData.append(myDict)
+            else:
+                continue
+
+
+        end = time.time()
+        
+
+        print("new ncbi api time: ", end - start)
+        return (organismData)
+
+    #this function gets a list of GCA's and a list of database URLs for downloading .gff and feature table files
     def getDataBaseURL(self, organism, database, ncbi_ret_max):
+        start = time.time()
         # search entrez
         error = False
         print("searching ncbi for: ", organism)
@@ -127,8 +175,14 @@ class Assembly:
                 self.orgName_dict[orgName.string + "::" + self.orgIDs[i]] = self.orgIDs[i]
 
         GlobalSettings.mainWindow.ncbi_search_dialog.searchProgressBar.setValue(80)
-
+        end = time.time()
+        
+        # print("PART1 TIME: ", end - start)
+        # print("database url list: ", self.database_url_list)
+        # print("orgname dict: ", self.orgName_dict)
+        
         return (self.database_url_list, self.orgName_dict)
+
 
     # this function downloads the .gz file from the given link, and stores it in the CSPR_DB folder from Global Settings
     # NOTE: this function should only be used to download .gz files, nothing else
