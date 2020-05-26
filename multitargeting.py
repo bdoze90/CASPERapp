@@ -1,4 +1,4 @@
-import os
+import os, time
 from PyQt5 import QtWidgets, Qt, QtGui, QtCore, uic
 import GlobalSettings
 import operator
@@ -37,8 +37,9 @@ class Multitargeting(QtWidgets.QMainWindow):
         self.chromo_length = list()
 
         # Listeners for changing the seed sequence or the .cspr file
-        self.max_chromo.currentIndexChanged.connect(self.fill_seed_id_chrom)
-        self.min_chromo.currentIndexChanged.connect(self.fill_seed_id_chrom)
+#        self.max_chromo.textChanged.connect(self.fill_seed_id_chrom)
+#        self.min_chromo.textChanged.connect(self.fill_seed_id_chrom)
+        self.update_min_max.clicked.connect(self.fill_seed_id_chrom)
         self.chromo_seed.currentIndexChanged.connect(self.chro_bar_data)
         self.Analyze_Button.clicked.connect(self.make_graphs)
 
@@ -435,16 +436,21 @@ class Multitargeting(QtWidgets.QMainWindow):
         self.repeats_vs_seeds_line.canvas.draw()
 
 
-    #fills min and max dropdown windows
+    #fills min and max dropdown windows ###NEED TO EDIT FOR TEXTEDIT
     def fill_min_max(self,run_seed_fill=True):
         self.ready_chromo_min_max = False
         index =1
         self.max_chromo.clear()
         self.min_chromo.clear()
         while index<self.max_repeats+1:
-            self.min_chromo.addItem(str(index))
-            self.max_chromo.addItem(str(self.max_repeats+1-index))
-            index+=1
+            if index == 2:
+                self.min_chromo.setText(str(index))
+                index+=1
+            elif index == self.max_repeats:
+                self.max_chromo.setText(str(index))
+                index+=1
+            else:
+                index+=1
         self.ready_chromo_min_max = True
         if run_seed_fill:
             self.fill_seed_id_chrom()
@@ -453,7 +459,7 @@ class Multitargeting(QtWidgets.QMainWindow):
     def fill_seed_id_chrom(self):
         if self.ready_chromo_min_max==False:
             return
-        if int(self.min_chromo.currentText())>int(self.max_chromo.currentText()):
+        if int(self.min_chromo.toPlainText())>int(self.max_chromo.toPlainText()):
             self.ready_chromo_min_max=False
             self.max_chromo.clear()
             self.min_chromo.clear()
@@ -464,12 +470,23 @@ class Multitargeting(QtWidgets.QMainWindow):
                                            QtWidgets.QMessageBox.Ok)
             self.fill_seed_id_chrom()
             return
+        elif int(self.min_chromo.toPlainText()) == 1:
+            self.ready_chromo_min_max=False
+            self.max_chromo.clear()
+            self.min_chromo.clear()
+            self.ready_chromo_min_max = True
+            self.fill_min_max(False)
+            QtWidgets.QMessageBox.question(self, "Minimum Number of Repeats Can't Be Less Than 2",
+                                           "The minimum number of repeats can't be less than 2.",
+                                           QtWidgets.QMessageBox.Ok)
+            self.fill_seed_id_chrom()
+            return
         self.ready_chromo_make_graph = False
         self.chromo_seed.clear()
         any = False
         seqLength = int(self.sq.endo_info[self.endo_drop.currentText()][1])
         for seed in self.parser.repeats:
-            if self.parser.repeats[seed] >= int(self.min_chromo.currentText()) and self.parser.repeats[seed]<=int(self.max_chromo.currentText()):
+            if self.parser.repeats[seed] >= int(self.min_chromo.toPlainText()) and self.parser.repeats[seed]<=int(self.max_chromo.toPlainText()):
                 any = True
                 #temp = self.sq.compress(seed,64)
                 self.chromo_seed.addItem(str(self.sq.decompress64(seed, slength=seqLength, toseq= True)))
