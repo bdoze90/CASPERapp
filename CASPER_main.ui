@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1055</width>
-    <height>637</height>
+    <width>1267</width>
+    <height>814</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,389 +18,186 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_6">
-    <item row="4" column="2">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_8">
+      <property name="minimumSize">
        <size>
-        <width>20</width>
-        <height>40</height>
+        <width>170</width>
+        <height>44</height>
        </size>
       </property>
-     </spacer>
+      <property name="maximumSize">
+       <size>
+        <width>170</width>
+        <height>44</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 28pt &quot;Sans Serif&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>CASPER</string>
+      </property>
+     </widget>
     </item>
-    <item row="3" column="1" colspan="2">
+    <item row="2" column="1" colspan="2">
      <layout class="QGridLayout" name="gridLayout_7">
       <item row="0" column="0">
        <widget class="QGroupBox" name="Step1">
         <property name="maximumSize">
          <size>
-          <width>500</width>
-          <height>300</height>
+          <width>100000</width>
+          <height>344</height>
          </size>
         </property>
         <property name="font">
          <font>
           <family>Sans Serif</family>
-          <pointsize>9</pointsize>
+          <pointsize>12</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 9pt &quot;Sans Serif&quot;;</string>
+         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
         </property>
         <property name="title">
          <string>Step 1: Select organism(s) and endonuclease</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="1" column="2" colspan="2">
+         <item row="0" column="3">
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="9" column="2">
-            <widget class="QPushButton" name="Remove_Organism_Button">
-             <property name="text">
-              <string>Remove Org.</string>
-             </property>
-            </widget>
+           <item row="4" column="0" colspan="3">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Organism:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="orgChoice">
+               <property name="minimumSize">
+                <size>
+                 <width>350</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="4" column="2" rowspan="2">
-            <widget class="QComboBox" name="endoChoice"/>
-           </item>
-           <item row="6" column="0">
+           <item row="8" column="0">
             <widget class="QLabel" name="Add_org_Label">
              <property name="text">
-              <string>Add Additonal Organisms</string>
+              <string>Add Additonal Organisms: </string>
              </property>
             </widget>
            </item>
-           <item row="7" column="0">
-            <widget class="QComboBox" name="Add_Orgo_Combo"/>
-           </item>
-           <item row="9" column="0">
-            <widget class="QComboBox" name="Added_Org_Combo"/>
-           </item>
-           <item row="7" column="2">
-            <widget class="QPushButton" name="Add_Orgo_Button">
+           <item row="10" column="0">
+            <widget class="QLabel" name="Added_Org_Label">
              <property name="text">
-              <string>Add Organism</string>
+              <string>Added Organisms:</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" rowspan="2">
+           <item row="0" column="0">
             <widget class="QCheckBox" name="checkBox">
              <property name="text">
               <string>No Reference Genome</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0" rowspan="2">
-            <widget class="QLabel" name="label_2">
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Sans Serif</family>
-               <pointsize>12</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
-             </property>
+           <item row="5" column="0" colspan="3">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="maximumSize">
+                <size>
+                 <width>155</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sans Serif</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Endonuclease:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="endoChoice">
+               <property name="minimumSize">
+                <size>
+                 <width>350</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="11" column="0">
+            <widget class="QComboBox" name="Added_Org_Combo"/>
+           </item>
+           <item row="11" column="1">
+            <widget class="QPushButton" name="Remove_Organism_Button">
              <property name="text">
-              <string>Organism:</string>
+              <string>Remove Organism</string>
              </property>
             </widget>
            </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="Added_Org_Label">
+           <item row="9" column="1">
+            <widget class="QPushButton" name="Add_Orgo_Button">
              <property name="text">
-              <string>Added Organisms</string>
+              <string>Add Organism</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0" rowspan="2">
-            <widget class="QLabel" name="label">
-             <property name="maximumSize">
-              <size>
-               <width>135</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Sans Serif</family>
-               <pointsize>12</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
-             </property>
-             <property name="text">
-              <string>Endonuclease:</string>
-             </property>
-            </widget>
+           <item row="9" column="0">
+            <widget class="QComboBox" name="Add_Orgo_Combo"/>
            </item>
-           <item row="2" column="2">
-            <widget class="QComboBox" name="orgChoice">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
+           <item row="0" column="2">
             <widget class="QPushButton" name="Question_Button_add_org">
              <property name="maximumSize">
               <size>
-               <width>75</width>
+               <width>16777215</width>
                <height>16777215</height>
               </size>
              </property>
              <property name="text">
               <string>?</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="Step2">
-        <property name="maximumSize">
-         <size>
-          <width>600</width>
-          <height>250</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 9pt &quot;Sans Serif&quot;;</string>
-        </property>
-        <property name="title">
-         <string>Step 2: Choose annotation file</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="1" column="0" rowspan="2" colspan="3">
-          <layout class="QGridLayout" name="gridLayout_14">
-           <item row="8" column="0">
-            <widget class="QLabel" name="ncbi_ret_max_label">
-             <property name="text">
-              <string>NCBI Return Max:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QLineEdit" name="ncbi_ret_max_line_edit">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This allows you to set the maximum number of results returned from Entrez.&lt;/p&gt;&lt;p&gt;No value above 100 is allowed.&lt;/p&gt;&lt;p&gt;Note: The larger the number entered, the longer the search could take.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0" colspan="2">
-            <widget class="QComboBox" name="Annotations_Organism">
-             <property name="minimumSize">
-              <size>
-               <width>320</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Sans Serif</family>
-               <pointsize>9</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="2">
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>Select Collection:</string>
-               </property>
-              </widget>
-             </item>
-             <item alignment="Qt::AlignHCenter">
-              <widget class="QRadioButton" name="refseq_button">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="text">
-                <string>RefSeq</string>
-               </property>
-               <property name="autoExclusive">
-                <bool>true</bool>
-               </property>
-               <attribute name="buttonGroup">
-                <string notr="true">refseq_genbank_buttonGroup</string>
-               </attribute>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="genbank_button">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="text">
-                <string>GenBank</string>
-               </property>
-               <property name="autoExclusive">
-                <bool>true</bool>
-               </property>
-               <attribute name="buttonGroup">
-                <string notr="true">refseq_genbank_buttonGroup</string>
-               </attribute>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QLineEdit" name="Search_Input"/>
-           </item>
-           <item row="7" column="2">
-            <widget class="QPushButton" name="Search_Button">
-             <property name="maximumSize">
-              <size>
-               <width>80</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Search</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0" colspan="2">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Select Format:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="feature_table_button">
-               <property name="text">
-                <string>Feature Table</string>
-               </property>
-               <attribute name="buttonGroup">
-                <string notr="true">type_of_annotation_file</string>
-               </attribute>
-              </widget>
-             </item>
-             <item alignment="Qt::AlignHCenter">
-              <widget class="QRadioButton" name="gff_button">
-               <property name="text">
-                <string>GFF</string>
-               </property>
-               <attribute name="buttonGroup">
-                <string notr="true">type_of_annotation_file</string>
-               </attribute>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="gbff_button">
-               <property name="text">
-                <string>GBFF</string>
-               </property>
-               <attribute name="buttonGroup">
-                <string notr="true">type_of_annotation_file</string>
-               </attribute>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0" colspan="2">
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Select Database:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="Annotation_Kegg">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>17</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>17</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>KEGG</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="Annotation_Ownfile">
-               <property name="text">
-                <string>Local File</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="NCBI_Select">
-               <property name="text">
-                <string>NCBI</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="Confused_Button">
-             <property name="maximumSize">
-              <size>
-               <width>80</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>?</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="3" alignment="Qt::AlignLeft">
-            <widget class="QLabel" name="Search_Label">
-             <property name="text">
-              <string>KEGG Database Search:</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -419,12 +216,12 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>500</width>
-          <height>481</height>
+          <width>100000</width>
+          <height>100000</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 9pt &quot;Sans Serif&quot;;</string>
+         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
         </property>
         <property name="title">
          <string>Step 3: Search and view targets</string>
@@ -515,9 +312,256 @@
         </layout>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="Step2">
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>343</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+        </property>
+        <property name="title">
+         <string>Step 2: Choose annotation file</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="1" column="0" rowspan="2" colspan="3">
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="8" column="0">
+            <widget class="QLabel" name="ncbi_ret_max_label">
+             <property name="text">
+              <string>NCBI Return Max:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLineEdit" name="ncbi_ret_max_line_edit">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This allows you to set the maximum number of results returned from Entrez.&lt;/p&gt;&lt;p&gt;No value above 100 is allowed.&lt;/p&gt;&lt;p&gt;Note: The larger the number entered, the longer the search could take.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0" colspan="2">
+            <widget class="QComboBox" name="Annotations_Organism">
+             <property name="minimumSize">
+              <size>
+               <width>320</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Sans Serif</family>
+               <pointsize>11</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="2">
+            <widget class="QLineEdit" name="Search_Input"/>
+           </item>
+           <item row="7" column="2">
+            <widget class="QPushButton" name="Search_Button">
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Select Database:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="Annotation_Kegg">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>17</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>17</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>KEGG</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="Annotation_Ownfile">
+               <property name="text">
+                <string>Local File</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="NCBI_Select">
+               <property name="text">
+                <string>NCBI</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="Confused_Button">
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>?</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="3" alignment="Qt::AlignLeft|Qt::AlignBottom">
+            <widget class="QLabel" name="Search_Label">
+             <property name="text">
+              <string>KEGG Database Search:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item alignment="Qt::AlignTop">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>Select Collection:</string>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+              <widget class="QRadioButton" name="refseq_button">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>RefSeq</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">refseq_genbank_buttonGroup</string>
+               </attribute>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignTop">
+              <widget class="QRadioButton" name="genbank_button">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>GenBank</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">refseq_genbank_buttonGroup</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item alignment="Qt::AlignTop">
+              <widget class="QLabel" name="label_6">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>1111111</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Select Format:</string>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignTop">
+              <widget class="QRadioButton" name="feature_table_button">
+               <property name="text">
+                <string>Feature Table</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">type_of_annotation_file</string>
+               </attribute>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+              <widget class="QRadioButton" name="gff_button">
+               <property name="text">
+                <string>GFF</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">type_of_annotation_file</string>
+               </attribute>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignTop">
+              <widget class="QRadioButton" name="gbff_button">
+               <property name="text">
+                <string>GBFF</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">type_of_annotation_file</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>30</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
      </layout>
     </item>
-    <item row="1" column="2">
+    <item row="0" column="2">
      <widget class="QLabel" name="label_7">
       <property name="minimumSize">
        <size>
@@ -532,50 +576,14 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
+       <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
       </property>
       <property name="text">
        <string>V 1.1 CRISPR Associated Software for Pathway Engineering and Research</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_8">
-      <property name="minimumSize">
-       <size>
-        <width>170</width>
-        <height>44</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>170</width>
-        <height>44</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 28pt &quot;Sans Serif&quot;;
-</string>
-      </property>
-      <property name="text">
-       <string>CASPER</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1" colspan="5">
+    <item row="1" column="1" colspan="5">
      <widget class="Line" name="line">
       <property name="maximumSize">
        <size>
@@ -588,8 +596,8 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <spacer name="horizontalSpacer_2">
+    <item row="2" column="0">
+     <spacer name="horizontalSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -601,8 +609,8 @@
       </property>
      </spacer>
     </item>
-    <item row="3" column="5">
-     <spacer name="horizontalSpacer_3">
+    <item row="2" column="5">
+     <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -621,7 +629,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1055</width>
+     <width>1267</width>
      <height>20</height>
     </rect>
    </property>
@@ -813,7 +821,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="refseq_genbank_buttonGroup"/>
   <buttongroup name="type_of_annotation_file"/>
+  <buttongroup name="refseq_genbank_buttonGroup"/>
  </buttongroups>
 </ui>
