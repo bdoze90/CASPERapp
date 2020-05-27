@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>420</height>
+    <width>854</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,295 +16,256 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <widget class="QPushButton" name="submitPushButton">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>390</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selecting 'Ok' will download the files in the 'Selected Matches' table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Ok</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancelPushButton">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>390</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Cancel' clears everything and closes this window&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="searchPushButton">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>70</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Search' searches the NCBI database for either RefSeq or Genbank files that match the organism entered&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Search</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="organismLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>10</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="selectionTableWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>150</y>
-     <width>241</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="verticalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
-   </property>
-   <property name="horizontalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-   <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderHighlightSections">
-    <bool>true</bool>
-   </attribute>
-   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderStretchLastSection">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>true</bool>
-   </attribute>
-  </widget>
-  <widget class="QTableWidget" name="submissionTableWidget">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>150</y>
-     <width>251</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="horizontalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="deselectButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>300</y>
-     <width>21</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Deselect' removes selected items from the 'Selected Matches' Table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>&lt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="selectButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>190</y>
-     <width>21</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Select' moves the selected matches in 'Found Matches' to the 'Selected Matches' table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="ogranismLabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Organism:</string>
-   </property>
-  </widget>
-  <widget class="QProgressBar" name="searchProgressBar">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>70</y>
-     <width>118</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="value">
-    <number>24</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="found_matches_label">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>130</y>
-     <width>81</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Found Matches</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="selected_matches_label">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>130</y>
-     <width>91</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Selected Matches</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="select_label">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>170</y>
-     <width>31</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="deselect_label">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>280</y>
-     <width>47</width>
-     <height>14</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Deselect</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="ncbi_ret_max_line_edit">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>10</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This allows you to set the maximum number of results returned from Entrez.&lt;/p&gt;&lt;p&gt;No number above 100 is allowed.&lt;/p&gt;&lt;p&gt;Note: the larger the number, the longer the search could take.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="ncbi_ret_max_label">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>10</y>
-     <width>161</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>NCBI Return Max</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="refseq_checkbox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>111</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RefSeq</string>
-   </property>
-   <attribute name="buttonGroup">
-    <string notr="true">data_base_selection_group</string>
-   </attribute>
-  </widget>
-  <widget class="QCheckBox" name="genbank_checkbox">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>70</y>
-     <width>121</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>GenBank</string>
-   </property>
-   <attribute name="buttonGroup">
-    <string notr="true">data_base_selection_group</string>
-   </attribute>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>6</x>
-     <y>40</y>
-     <width>241</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select which database to search in:</string>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="1">
+    <widget class="QCheckBox" name="genbank_checkbox">
+     <property name="text">
+      <string>GenBank</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">data_base_selection_group</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="found_matches_label">
+     <property name="text">
+      <string>Found Matches</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="5">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="3" colspan="2">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="3">
+      <widget class="QProgressBar" name="searchProgressBar">
+       <property name="minimumSize">
+        <size>
+         <width>251</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="searchPushButton">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Search' searches the NCBI database for either RefSeq or Genbank files that match the organism entered&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="7" column="1">
+    <widget class="QPushButton" name="cancelPushButton">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Cancel' clears everything and closes this window&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="4">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="organismLineEdit"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="ncbi_ret_max_label">
+       <property name="text">
+        <string>NCBI Return Max</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="ogranismLabel">
+       <property name="text">
+        <string>Organism:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="ncbi_ret_max_line_edit">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This allows you to set the maximum number of results returned from Entrez.&lt;/p&gt;&lt;p&gt;No number above 100 is allowed.&lt;/p&gt;&lt;p&gt;Note: the larger the number, the longer the search could take.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Select which database to search in:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" rowspan="2" colspan="2">
+    <widget class="QTableWidget" name="selectionTableWidget">
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="select_label">
+       <property name="text">
+        <string>Select</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectButton">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Select' moves the selected matches in 'Found Matches' to the 'Selected Matches' table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="4">
+    <widget class="QLabel" name="selected_matches_label">
+     <property name="text">
+      <string>Selected Matches</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="deselect_label">
+       <property name="text">
+        <string>Deselect</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deselectButton">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;'Deselect' removes selected items from the 'Selected Matches' Table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>&lt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="2">
+    <widget class="QCheckBox" name="refseq_checkbox">
+     <property name="text">
+      <string>RefSeq</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">data_base_selection_group</string>
+     </attribute>
+    </widget>
+   </item>
+   <item row="5" column="4" rowspan="2">
+    <widget class="QTableWidget" name="submissionTableWidget">
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4">
+    <widget class="QPushButton" name="submitPushButton">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selecting 'Ok' will download the files in the 'Selected Matches' table&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Continue</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

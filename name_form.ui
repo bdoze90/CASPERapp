@@ -13,16 +13,11 @@
   <property name="windowTitle">
    <string>Show Names</string>
   </property>
-  <widget class="QTableWidget" name="name_table">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>11</y>
-     <width>571</width>
-     <height>291</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTableWidget" name="name_table"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

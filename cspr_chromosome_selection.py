@@ -3,23 +3,23 @@ from PyQt5 import QtWidgets, Qt, uic
 from CSPRparser import CSPRparser
 
 ####################################################################################################
-# Class: cspr_chromesome_selection
+# Class: cspr_chromosome_selection
 # This class takes a filename as the constructor
-# It opens a window that shows the chromesomes that are in the CSPR file provided
-# the user can then choose which chromesome they want to put into a new CSPR file
-# it creates a new CSPR file that is compatible with the parser from the chromesomes selected
+# It opens a window that shows the chromosomes that are in the CSPR file provided
+# the user can then choose which chromosome they want to put into a new CSPR file
+# it creates a new CSPR file that is compatible with the parser from the chromosomes selected
 ####################################################################################################
 
-class cspr_chromesome_selection(QtWidgets.QDialog):
+class cspr_chromosome_selection(QtWidgets.QDialog):
     # the init function takes the cspr file name
     # it sets up the window
-    # it searches the CSPR file for the chromesomes
-    # it loads those chromesomes into the table
+    # it searches the CSPR file for the chromosomes
+    # it loads those chromosomes into the table
     def __init__(self):
         # qt stuff
-        super(cspr_chromesome_selection, self).__init__()
-        uic.loadUi("cspr_chromesome_selection.ui", self)
-        self.setWindowTitle("Choose which chromesomes to pull data from!")
+        super(cspr_chromosome_selection, self).__init__()
+        uic.loadUi("cspr_chromosome_selection.ui", self)
+        self.setWindowTitle("Choose which chromosomes to pull data from!")
         self.setWindowIcon(Qt.QIcon("cas9image.png"))
 
         # button connections
@@ -28,12 +28,12 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
         self.select_button.clicked.connect(self.load_chrom_names)
 
         # chrom_table stuff
-        self.chromesome_table.setColumnCount(1)
-        self.chromesome_table.setShowGrid(True)
-        self.chromesome_table.setHorizontalHeaderLabels("Chromesome;".split(";"))
-        self.chromesome_table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.chromesome_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.chromesome_table.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.chromosome_table.setColumnCount(1)
+        self.chromosome_table.setShowGrid(True)
+        self.chromosome_table.setHorizontalHeaderLabels("chromosome;".split(";"))
+        self.chromosome_table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.chromosome_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.chromosome_table.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
 
         # cspr_files_available_table
         self.cspr_files_available_table.setColumnCount(1)
@@ -70,7 +70,7 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
         self.show()
 
     # load_chrom_names makes sure that the user only selects 1 file
-    # then it loads all of the chroms in that file, and populates the chromesome_table
+    # then it loads all of the chroms in that file, and populates the chromosome_table
     def load_chrom_names(self):
         selected = self.cspr_files_available_table.selectedItems()
 
@@ -87,33 +87,33 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
             return
 
         # get the data from the cspr file
-        self.chromesome_table.clearContents()
+        self.chromosome_table.clearContents()
         self.orgName = selected[0].text()
         self.file_name_line_edit.setText(self.avail_cspr[self.orgName])
         self.cspr_file = self.avail_cspr[self.orgName]
         self.myParser.fileName = self.avail_cspr[self.orgName]
-        self.gene, self.misc = self.myParser.get_chromesome_names()
+        self.gene, self.misc = self.myParser.get_chromosome_names()
 
         # loop through and set the table
         loopCount = 0
-        self.chromesome_table.setRowCount(len(self.myParser.chromesomesSelectedList))
-        for item in self.myParser.chromesomesSelectedList:
+        self.chromosome_table.setRowCount(len(self.myParser.chromosomesSelectedList))
+        for item in self.myParser.chromosomesSelectedList:
             tabWidget = QtWidgets.QTableWidgetItem(item)
-            self.chromesome_table.setItem(loopCount, 0, tabWidget)
+            self.chromosome_table.setItem(loopCount, 0, tabWidget)
             loopCount += 1
-        self.chromesome_table.resizeColumnsToContents()
+        self.chromosome_table.resizeColumnsToContents()
 
     # this function builds a new CSPR file from the selected
     # gets the Genome/Misc line from the main file, also gets the correct Karystats numbers
-    # gets the chromesome data from the chromesomes selected
-    # gets the repeats data for the chromesomes selected
+    # gets the chromosome data from the chromosomes selected
+    # gets the repeats data for the chromosomes selected
     # it also updates the org_table and corresponding dict in the pop_analysis class
     def submit_function(self):
-        selectedList = self.chromesome_table.selectedItems()
+        selectedList = self.chromosome_table.selectedItems()
         # make sure at least one chrom is selected
         if len(selectedList) == 0:
             QtWidgets.QMessageBox.question(self, "Nothing Selected",
-                                           "No items selected, please select at least 1 chromesome to pull out.",
+                                           "No items selected, please select at least 1 chromosome to pull out.",
                                            QtWidgets.QMessageBox.Ok)
             return
 
@@ -153,7 +153,7 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
         outputStream.write('\n')
         outputStream.write(self.misc)
 
-        # now go through and write the chromesomes
+        # now go through and write the chromosomes
         for item in output_list:
             outputStream.write(item)
             csprData = open(self.cspr_file, 'r')
@@ -170,8 +170,7 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
                 buffer = csprData.readline()
             csprData.close()
         outputStream.write("REPEATS\n")
-
-        # now to go through and write all of the repeats
+# now to go through and write all of the repeats
         csprFile = open(self.cspr_file, 'r')
         csprData = csprFile.read().split('\n')
 
@@ -223,8 +222,8 @@ class cspr_chromesome_selection(QtWidgets.QDialog):
     # clears table contents
     # clears the text variables as well
     def cancel_function(self):
-        self.chromesome_table.clearContents()
-        self.chromesome_table.setRowCount(0)
+        self.chromosome_table.clearContents()
+        self.chromosome_table.setRowCount(0)
         self.cspr_files_available_table.clearContents()
         self.cspr_files_available_table.setRowCount(0)
         self.avail_cspr = dict()

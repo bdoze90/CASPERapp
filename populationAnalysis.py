@@ -46,17 +46,18 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         self.name_form2 = show_names2_ui.show_names_table2()
 
 
-        #orgonaism table
+        #organism table
         self.org_Table.setColumnCount(1)
         self.org_Table.setShowGrid(False)
         self.org_Table.setHorizontalHeaderLabels(["Organism"])
         self.org_Table.horizontalHeader().setSectionsClickable(True)
+        self.org_Table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
         self.org_Table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.org_Table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.org_Table.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.org_Table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
 
-        #top right table
+        #top-right table
         self.table2.setColumnCount(9)
         self.table2.setShowGrid(False)
         self.table2.setHorizontalHeaderLabels(["Seed","% Coverage","Total Repeats","Avg. Repeats/Chromosome", "Consensus Sequence", "% Consensus", "Score","PAM", "Strand"])
@@ -74,6 +75,11 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         self.loc_finder_table.setHorizontalHeaderLabels(["Seed ID", "Sequence", "Organism", "Chromosome", "Location"])
         self.loc_finder_table.horizontalHeader().setSectionsClickable(True)
         self.loc_finder_table.horizontalHeader().sectionClicked.connect(self.loc_table_sorter)
+        self.loc_finder_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.Stretch) #This keeps the organism column from being too small.
+        self.loc_finder_table.horizontalHeader().setResizeMode(3, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(4, QtGui.QHeaderView.ResizeToContents)
         self.loc_finder_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.loc_finder_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.loc_finder_table.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
@@ -189,7 +195,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             self.endoBox.hide()
             self.ncbi_search_button.hide()
             self.label_3.hide()
-            self.label_2.setText('Select 1 Meta Genomic CSPR File')
+            self.label_2.setText('Select a Metagenomic CSPR File')
         elif not self.meta_genomic_cspr_checkbox.isChecked():
             self.endoBox.show()
             self.ncbi_search_button.show()
@@ -242,7 +248,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
                 self.org_Table.clearContents()
                 self.org_Table.setRowCount(0)
 
-        self.org_Table.resizeColumnsToContents()
+#        self.org_Table.resizeColumnsToContents() ##Commenting this out allows the header to remain full sized
 
         self.fillEndo()
         #self.changeEndos()
@@ -399,6 +405,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             self.table2.setItem(index, 0, seed)
             self.table2.setItem(index, 2, total_repeats)
             tempPercentConserved = self.findPercentConserved(seeds) * 100
+            tempPercentConserved = float("%.2f" % tempPercentConserved)
             percentTab = QtWidgets.QTableWidgetItem(str(tempPercentConserved) + '%')
             self.table2.setItem(index, 1, percentTab)
 
