@@ -17,7 +17,23 @@
    <string>CASPER</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout_6">
+    <item row="2" column="5">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_8">
       <property name="minimumSize">
@@ -37,9 +53,22 @@
 </string>
       </property>
       <property name="text">
-       <string>CASPER</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;CASPER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
+    </item>
+    <item row="2" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item row="2" column="1" colspan="2">
      <layout class="QGridLayout" name="gridLayout_7">
@@ -54,14 +83,14 @@
         <property name="font">
          <font>
           <family>Sans Serif</family>
-          <pointsize>12</pointsize>
+          <pointsize>11</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
+         <string notr="true"/>
         </property>
         <property name="title">
          <string>Step 1: Select organism(s) and endonuclease</string>
@@ -210,7 +239,7 @@
        <widget class="QGroupBox" name="Step3">
         <property name="minimumSize">
          <size>
-          <width>400</width>
+          <width>500</width>
           <height>400</height>
          </size>
         </property>
@@ -221,7 +250,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
+         <string notr="true"/>
         </property>
         <property name="title">
          <string>Step 3: Search and view targets</string>
@@ -321,7 +350,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+         <string notr="true"/>
         </property>
         <property name="title">
          <string>Step 2: Choose annotation file</string>
@@ -566,7 +595,7 @@
       <property name="minimumSize">
        <size>
         <width>730</width>
-        <height>19</height>
+        <height>30</height>
        </size>
       </property>
       <property name="maximumSize">
@@ -583,44 +612,27 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1" colspan="5">
+    <item row="1" column="1" colspan="2">
      <widget class="Line" name="line">
       <property name="maximumSize">
        <size>
-        <width>907</width>
+        <width>1000000</width>
         <height>16777215</height>
        </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-    </item>
-    <item row="2" column="0">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="5">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>

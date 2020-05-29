@@ -9,48 +9,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1005</width>
-    <height>497</height>
+    <width>1030</width>
+    <height>580</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CASPER</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="4">
-     <spacer name="horizontalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="1">
-     <widget class="QPushButton" name="Go_Back_Button">
-      <property name="text">
-       <string>Return</string>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="3">
      <spacer name="verticalSpacer">
       <property name="orientation">
@@ -64,26 +34,30 @@
       </property>
      </spacer>
     </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="Go_Back_Button">
+      <property name="text">
+       <string>Return</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="2" column="1">
      <widget class="QCheckBox" name="select_all_checkbox">
       <property name="text">
        <string>Select All</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1" colspan="3">
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>317</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>800</width>
-        <height>16777215</height>
-       </size>
       </property>
      </widget>
     </item>
@@ -96,7 +70,7 @@
 </string>
         </property>
         <property name="text">
-         <string>CASPER</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CASPER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -125,10 +99,19 @@
       </item>
      </layout>
     </item>
-    <item row="4" column="3">
-     <widget class="QPushButton" name="Submit_button">
-      <property name="text">
-       <string>Submit</string>
+    <item row="3" column="1" colspan="3">
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>317</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>800</width>
+        <height>16777215</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -145,6 +128,26 @@
       </property>
      </spacer>
     </item>
+    <item row="4" column="4">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="3">
+     <widget class="QPushButton" name="Submit_button">
+      <property name="text">
+       <string>Submit</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -152,8 +155,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1005</width>
-     <height>20</height>
+     <width>1030</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

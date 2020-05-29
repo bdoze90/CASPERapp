@@ -27,6 +27,23 @@ class NewGenome(QtWidgets.QMainWindow):
         self.setWindowTitle('New Genome')
         self.k = KEGG()
         self.info_path = info_path
+
+        #---Style Modifications---#
+
+        groupbox_style = """
+        QGroupBox:title{subcontrol-origin: margin;
+                        left: 10px;
+                        padding: 0 5px 0 5px;}
+        QGroupBox#Step1{border: 2px solid rgb(111,181,110);
+                        border-radius: 9px;
+                        font: 11pt "Sans Serif";
+                        font: bold;
+                        margin-top: 10px;}"""
+
+        self.Step1.setStyleSheet(groupbox_style)
+        self.Step2.setStyleSheet(groupbox_style.replace("Step1","Step2").replace("rgb(111,181,110)","rgb(77,158,89)"))
+        self.Step3.setStyleSheet(groupbox_style.replace("Step1","Step3").replace("rgb(111,181,110)","rgb(53,121,93)"))
+
         #---Button Modifications---#
 
         self.setWindowIcon(Qt.QIcon("cas9image.png"))

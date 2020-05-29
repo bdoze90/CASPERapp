@@ -316,7 +316,7 @@ class Multitargeting(QtWidgets.QMainWindow):
         self.repeats_vs_chromo.canvas.axes.set_ylim(0,max(y1)+1)
         self.repeats_vs_chromo.canvas.axes.set_xticks(x_pos)
         self.repeats_vs_chromo.canvas.axes.set_xticklabels(x1)
-        self.repeats_vs_chromo.canvas.axes.set_xlabel('Chromosome')
+        self.repeats_vs_chromo.canvas.axes.set_xlabel('Scaffold')
         self.repeats_vs_chromo.canvas.axes.set_ylabel('Number of Repeats')
 
         #for loop below could be used to rotae labels for spacing

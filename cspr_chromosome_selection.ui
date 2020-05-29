@@ -10,6 +10,11 @@
     <height>549</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -37,7 +42,7 @@
    <item row="1" column="2">
     <widget class="QLabel" name="chrom_in_file_label">
      <property name="text">
-      <string>Chromosomes in Organism:</string>
+      <string>Scaffolds in Organism:</string>
      </property>
     </widget>
    </item>
@@ -82,7 +87,7 @@
     <widget class="QLabel" name="available_cspr_label">
      <property name="maximumSize">
       <size>
-       <width>69</width>
+       <width>100</width>
        <height>16</height>
       </size>
      </property>

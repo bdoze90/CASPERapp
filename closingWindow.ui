@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Keep or Delete Files</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" colspan="2">
     <widget class="QTableWidget" name="files_table">
@@ -42,7 +45,7 @@
      </attribute>
     </widget>
    </item>
-   <item row="0" column="0">
+   <item row="0" column="0" alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="title_label">
      <property name="text">
       <string>Please choose which files to delete:</string>

@@ -252,6 +252,22 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.link_list = list() # the list of the downloadable links from the NCBI search
         self.organismDict = dict() # the dictionary for the links to download. Key is the description of the organism, value is the ID that can be found in link_list
 
+        # --- Style Modifications --- #
+        groupbox_style = """
+        QGroupBox:title{subcontrol-origin: margin;
+                        left: 10px;
+                        padding: 0 5px 0 5px;}
+        QGroupBox#Step1{border: 2px solid rgb(111,181,110);
+                        border-radius: 9px;
+                        font: 11pt "Sans Serif";
+                        font: bold;
+                        margin-top: 10px;}"""
+
+        self.Step1.setStyleSheet(groupbox_style)
+        self.Step2.setStyleSheet(groupbox_style.replace("Step1","Step2").replace("rgb(111,181,110)","rgb(77,158,89)"))
+        self.Step3.setStyleSheet(groupbox_style.replace("Step1","Step3").replace("rgb(111,181,110)","rgb(53,121,93)"))
+        self.line.setStyleSheet("""Line{color: black;}""")
+
         # --- Button Modifications --- #
         self.setWindowIcon(QtGui.QIcon("cas9image.png"))
         self.pushButton_FindTargets.clicked.connect(self.gather_settings)

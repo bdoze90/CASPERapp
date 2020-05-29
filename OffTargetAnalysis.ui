@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>484</width>
-    <height>368</height>
+    <width>464</width>
+    <height>391</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -21,8 +26,15 @@
     <widget class="QLabel" name="label_4">
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <family>Sans Serif</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
      </property>
      <property name="text">
       <string>Endonuclease:</string>
@@ -43,14 +55,14 @@
      <property name="font">
       <font>
        <family>Sans Serif</family>
-       <pointsize>10</pointsize>
+       <pointsize>11</pointsize>
        <weight>50</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans Serif&quot;;</string>
+      <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
      </property>
      <property name="text">
       <string>Max No. Mismatches</string>
@@ -130,8 +142,15 @@
     <widget class="QLabel" name="label_3">
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <family>Sans Serif</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
      </property>
      <property name="text">
       <string>Organism:</string>
@@ -216,6 +235,9 @@
    </item>
    <item row="10" column="1" colspan="4">
     <widget class="Line" name="line_2">
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1211</width>
-    <height>807</height>
+    <height>822</height>
    </rect>
   </property>
   <property name="font">
@@ -19,6 +19,9 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
      <spacer name="horizontalSpacer_2">
@@ -48,234 +51,26 @@
     </item>
     <item row="1" column="1">
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="0" alignment="Qt::AlignLeft">
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Select organism(s) and endonuclease:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="2" colspan="3">
+      <item row="8" column="2" colspan="3">
        <widget class="QLabel" name="label_4">
         <property name="font">
          <font>
-          <pointsize>14</pointsize>
+          <family>Sans Serif</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
-         <string>Location Finder</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Location Finder&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
-       <widget class="QPushButton" name="goBackButton">
-        <property name="maximumSize">
-         <size>
-          <width>91</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Go Back</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2" rowspan="2" colspan="4">
-       <widget class="QPushButton" name="analyze_button">
-        <property name="minimumSize">
-         <size>
-          <width>191</width>
-          <height>51</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>310</width>
-          <height>54</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Analyze Organism(s)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="6">
-       <widget class="QPushButton" name="clear_Button">
-        <property name="text">
-         <string>Clear</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QTableWidget" name="org_Table">
-        <property name="minimumSize">
-         <size>
-          <width>500</width>
-          <height>270</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>500</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <attribute name="horizontalHeaderCascadingSectionResizes">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-       </widget>
-      </item>
-      <item row="9" column="2" colspan="5">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="4" column="2" rowspan="3" colspan="5">
-       <widget class="QTableWidget" name="table2">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>224</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>700</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <attribute name="horizontalHeaderCascadingSectionResizes">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>false</bool>
-        </attribute>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="7" alignment="Qt::AlignLeft">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <pointsize>24</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Population Analysis</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="5">
-       <widget class="QPushButton" name="find_locs_button">
-        <property name="minimumSize">
-         <size>
-          <width>159</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>159</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Find Locations</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="6">
-       <widget class="QPushButton" name="clear_loc_button">
-        <property name="minimumSize">
-         <size>
-          <width>159</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>159</width>
-          <height>22</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Clear Locations</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="2" colspan="5">
-       <widget class="QTableWidget" name="loc_finder_table">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>192</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>700</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <attribute name="horizontalHeaderCascadingSectionResizes">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>false</bool>
-        </attribute>
-       </widget>
-      </item>
-      <item row="6" column="0" rowspan="3">
+      <item row="7" column="0" rowspan="3">
        <widget class="QTabWidget" name="tabWidget">
         <property name="minimumSize">
          <size>
@@ -335,7 +130,198 @@
         </widget>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="8" column="5">
+       <widget class="QPushButton" name="find_locs_button">
+        <property name="minimumSize">
+         <size>
+          <width>159</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>159</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Find Locations</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Sans Serif</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Select organism(s) and endonuclease:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" rowspan="2" colspan="4">
+       <widget class="QPushButton" name="analyze_button">
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>51</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>310</width>
+          <height>54</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Sans Serif&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Analyze Organism(s)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <widget class="QPushButton" name="clear_Button">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="7" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Sans Serif</family>
+          <pointsize>28</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 28pt &quot;Sans Serif&quot;;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Population Analysis&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0" alignment="Qt::AlignLeft">
+         <widget class="QCheckBox" name="meta_genomic_cspr_checkbox">
+          <property name="maximumSize">
+           <size>
+            <width>1000000</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Show Metagenomic CSPR Files</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="ncbi_search_button">
+          <property name="maximumSize">
+           <size>
+            <width>159</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>NCBI File Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="10" column="2" colspan="5">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="0">
+       <widget class="QTableWidget" name="org_Table">
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>270</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>500</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+       </widget>
+      </item>
+      <item row="5" column="2" rowspan="3" colspan="5">
+       <widget class="QTableWidget" name="table2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>224</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>700</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="verticalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+      </item>
+      <item row="3" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <layout class="QFormLayout" name="formLayout">
@@ -346,20 +332,21 @@
            <widget class="QLabel" name="label_3">
             <property name="maximumSize">
              <size>
-              <width>91</width>
+              <width>10000</width>
               <height>22</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>10</pointsize>
+              <family>Sans Serif</family>
+              <pointsize>11</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
              </font>
             </property>
             <property name="text">
              <string> Endonuclease:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -383,35 +370,78 @@
         </item>
        </layout>
       </item>
-      <item row="5" column="0">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0" alignment="Qt::AlignLeft">
-         <widget class="QCheckBox" name="meta_genomic_cspr_checkbox">
-          <property name="maximumSize">
-           <size>
-            <width>221</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Show Metagenomic .cspr Files</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="ncbi_search_button">
-          <property name="maximumSize">
-           <size>
-            <width>159</width>
-            <height>22</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>NCBI File Search</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <item row="10" column="0">
+       <widget class="QPushButton" name="goBackButton">
+        <property name="maximumSize">
+         <size>
+          <width>91</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Go Back</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="6">
+       <widget class="QPushButton" name="clear_loc_button">
+        <property name="minimumSize">
+         <size>
+          <width>159</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>159</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Clear Locations</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2" colspan="5">
+       <widget class="QTableWidget" name="loc_finder_table">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>192</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>700</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="7">
+       <widget class="Line" name="line">
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

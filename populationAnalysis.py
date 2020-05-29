@@ -60,7 +60,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         #top-right table
         self.table2.setColumnCount(9)
         self.table2.setShowGrid(False)
-        self.table2.setHorizontalHeaderLabels(["Seed","% Coverage","Total Repeats","Avg. Repeats/Chromosome", "Consensus Sequence", "% Consensus", "Score","PAM", "Strand"])
+        self.table2.setHorizontalHeaderLabels(["Seed","% Coverage","Total Repeats","Avg. Repeats/Scaffold", "Consensus Sequence", "% Consensus", "Score","PAM", "Strand"])
         self.table2.horizontalHeader().setSectionsClickable(True)
         self.table2.horizontalHeader().sectionClicked.connect(self.table2_sorting)
         self.table2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -72,7 +72,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         #Finder table
         self.loc_finder_table.setColumnCount(5)
         self.loc_finder_table.setShowGrid(False)
-        self.loc_finder_table.setHorizontalHeaderLabels(["Seed ID", "Sequence", "Organism", "Chromosome", "Location"])
+        self.loc_finder_table.setHorizontalHeaderLabels(["Seed ID", "Sequence", "Organism", "Scaffold", "Location"])
         self.loc_finder_table.horizontalHeader().setSectionsClickable(True)
         self.loc_finder_table.horizontalHeader().sectionClicked.connect(self.loc_table_sorter)
         self.loc_finder_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
