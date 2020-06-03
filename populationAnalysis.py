@@ -46,22 +46,22 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         self.name_form = show_nams_ui.show_names_table()
         self.name_form2 = show_names2_ui.show_names_table2()
 
-        # orgonaism table
+
+        #organism table
         self.org_Table.setColumnCount(1)
         self.org_Table.setShowGrid(False)
         self.org_Table.setHorizontalHeaderLabels(["Organism"])
         self.org_Table.horizontalHeader().setSectionsClickable(True)
+        self.org_Table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
         self.org_Table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.org_Table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.org_Table.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.org_Table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
 
-        # top right table
+        #top-right table
         self.table2.setColumnCount(9)
         self.table2.setShowGrid(False)
-        self.table2.setHorizontalHeaderLabels(
-            ["Seed", "% Coverage", "Total Repeats", "Avg. Repeats/Chromosome", "Consensus Sequence", "% Consensus",
-             "Score", "PAM", "Strand"])
+        self.table2.setHorizontalHeaderLabels(["Seed","% Coverage","Total Repeats","Avg. Repeats/Scaffold", "Consensus Sequence", "% Consensus", "Score","PAM", "Strand"])
         self.table2.horizontalHeader().setSectionsClickable(True)
         self.table2.horizontalHeader().sectionClicked.connect(self.table2_sorting)
         self.table2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -73,9 +73,14 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         # Finder table
         self.loc_finder_table.setColumnCount(5)
         self.loc_finder_table.setShowGrid(False)
-        self.loc_finder_table.setHorizontalHeaderLabels(["Seed ID", "Sequence", "Organism", "Chromosome", "Location"])
+        self.loc_finder_table.setHorizontalHeaderLabels(["Seed ID", "Sequence", "Organism", "Scaffold", "Location"])
         self.loc_finder_table.horizontalHeader().setSectionsClickable(True)
         self.loc_finder_table.horizontalHeader().sectionClicked.connect(self.loc_table_sorter)
+        self.loc_finder_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.Stretch) #This keeps the organism column from being too small.
+        self.loc_finder_table.horizontalHeader().setResizeMode(3, QtGui.QHeaderView.ResizeToContents)
+        self.loc_finder_table.horizontalHeader().setResizeMode(4, QtGui.QHeaderView.ResizeToContents)
         self.loc_finder_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.loc_finder_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.loc_finder_table.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
@@ -194,7 +199,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             self.endoBox.hide()
             self.ncbi_search_button.hide()
             self.label_3.hide()
-            self.label_2.setText('Select 1 Meta Genomic CSPR File')
+            self.label_2.setText('Select a Metagenomic CSPR File')
         elif not self.meta_genomic_cspr_checkbox.isChecked():
             self.endoBox.show()
             self.ncbi_search_button.show()
@@ -247,7 +252,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
                 self.org_Table.clearContents()
                 self.org_Table.setRowCount(0)
 
-        self.org_Table.resizeColumnsToContents()
+#        self.org_Table.resizeColumnsToContents() ##Commenting this out allows the header to remain full sized
 
         self.fillEndo()
         # self.changeEndos()
@@ -329,17 +334,16 @@ class Pop_Analysis(QtWidgets.QMainWindow):
                 # rules for selecting FNA/Fasta files
                 # check to make sure that the user selected at least 2 organisms, and 1 endonuclease
                 if len(selectedList) < 1 or self.endoBox.currentText() == 'None Selected':
-                    QtWidgets.QMessageBox.question(self, "Nothing Seleted",
-                                                   "No items selected. Please select at least 1 organism, and only 1 endonuclease",
-                                                   QtWidgets.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select at least 1 organism and only 1 endonuclease.",
+                                                QtWidgets.QMessageBox.Ok)
                     return
                 if len(selectedList) == 1:
                     error = QtWidgets.QMessageBox.question(self, "Only 1 Organism Selected",
-                                                           "Population Analysis works with multiple organisms, or a meta genome. If the file selected it not a meta genome, the program may not function correctly.\n\n"
-                                                           "Do you wish to continue?",
-                                                           QtWidgets.QMessageBox.Yes |
-                                                           QtWidgets.QMessageBox.No,
-                                                           QtWidgets.QMessageBox.No)
+                                                            "Population Analysis works with multiple organisms, or a metagenome. If the file selected is not a metagenome, the program may not function correctly. Do you wish to continue? \n\n"
+                                                            "Do you wish to continue?",
+                                                            QtWidgets.QMessageBox.Yes |
+                                                            QtWidgets.QMessageBox.No,
+                                                            QtWidgets.QMessageBox.No)
                     if (error == QtWidgets.QMessageBox.No):
                         return
 
@@ -350,14 +354,12 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             # rules for selecting cspr files
             elif self.meta_genomic_cspr_checkbox.isChecked():
                 if len(selectedList) == 0:
-                    QtWidgets.QMessageBox.question(self, "Nothing Seleted",
-                                                   "No items selected. Please select one meta genome for Population Analysis.",
-                                                   QtWidgets.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.question(self, "Nothing Seleted", "No items selected. Please select one metagenome for Population Analysis.",
+                                                QtWidgets.QMessageBox.Ok)
                     return
                 elif len(selectedList) > 1:
-                    QtWidgets.QMessageBox.question(self, "Too many Selected",
-                                                   "Only 1 meta genomic CSPR file is allowed to be selected",
-                                                   QtWidgets.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.question(self, "Too Many Selected", "Only 1 metagenomic CSPR file is allowed to be selected.",
+                                                QtWidgets.QMessageBox.Ok)
                     return
 
     # this function calculates the percentConserved for the table
@@ -407,6 +409,7 @@ class Pop_Analysis(QtWidgets.QMainWindow):
             self.table2.setItem(index, 0, seed)
             self.table2.setItem(index, 2, total_repeats)
             tempPercentConserved = self.findPercentConserved(seeds) * 100
+            tempPercentConserved = float("%.2f" % tempPercentConserved)
             percentTab = QtWidgets.QTableWidgetItem(str(tempPercentConserved) + '%')
             self.table2.setItem(index, 1, percentTab)
 
@@ -729,14 +732,14 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
         # make sure the user inputs whats needed
         if self.orgName_line_edit.text() == '' or self.org_code_line_edit.text() == '' or self.orgNum_lineEdit.text() == '':
             QtWidgets.QMessageBox.question(self, "Missing Information",
-                                           "Please input an Organism Name, an Organism Code, and the number of Organisms you are analyzing.",
+                                           "Please input an organism name, an organism code, and the number of organisms you are analyzing.",
                                            QtWidgets.QMessageBox.Ok)
             return
 
         # make sure the user inputs an integer for the number of organisms
         if not self.orgNum_lineEdit.text().isdigit():
             QtWidgets.QMessageBox.question(self, "Error",
-                                           "Organism Number must be integers only!",
+                                           "Organism number must be integers only!",
                                            QtWidgets.QMessageBox.Ok)
             return
 
@@ -747,8 +750,8 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
     def cancel_function(self):
         # check to see if the sequencer is running. If so ask the user if they wish to close out
         if self.proc_running:
-            error = QtWidgets.QMessageBox.question(self, "Sequencer is Running",
-                                                   "Sequencer is running. Closing this window will cancel that process, and return to the Population Analysis window. .\n\n"
+            error = QtWidgets.QMessageBox.question(self, "Sequencer Is Running",
+                                                   "Sequencer is running. Closing this window will cancel that process and return to the Population Analysis window. \n\n"
                                                    "Do you wish to continue?",
                                                    QtWidgets.QMessageBox.Yes |
                                                    QtWidgets.QMessageBox.No,
@@ -888,7 +891,7 @@ class fna_and_cspr_combiner(QtWidgets.QDialog):
         for i in range(len(self.ref_para_list)):
             secondCode = secondCode + self.ref_para_list[i][0] + ',' + self.ref_para_list[i][1] + '|'
             secondCode = secondCode.replace('\n', '')
-            # ------------------done getting the arguments------------------------------
+        #------------------done getting the arguments------------------------------
 
         # get the program path
         program = '"' + os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'Casper_Seq_Finder') + '" '

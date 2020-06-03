@@ -15,4 +15,4 @@ class pop_analysis_3dgraph(QWidget):
         self.canvas.axes = self.canvas.figure.add_subplot(111, projection='3d')
         self.canvas.figure.subplots_adjust(left=0.0, right=0.9, bottom=0.3, top=0.9)
         self.setLayout(vertical_layout)
-        self.canvas.figure.tight_layout()
+        # self.canvas.figure.tight_layout()

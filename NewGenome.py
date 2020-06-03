@@ -21,6 +21,23 @@ class NewGenome(QtWidgets.QMainWindow):
         self.setWindowTitle('New Genome')
         self.k = KEGG()
         self.info_path = info_path
+
+        #---Style Modifications---#
+
+        groupbox_style = """
+        QGroupBox:title{subcontrol-origin: margin;
+                        left: 10px;
+                        padding: 0 5px 0 5px;}
+        QGroupBox#Step1{border: 2px solid rgb(111,181,110);
+                        border-radius: 9px;
+                        font: 11pt "Sans Serif";
+                        font: bold;
+                        margin-top: 10px;}"""
+
+        self.Step1.setStyleSheet(groupbox_style)
+        self.Step2.setStyleSheet(groupbox_style.replace("Step1","Step2").replace("rgb(111,181,110)","rgb(77,158,89)"))
+        self.Step3.setStyleSheet(groupbox_style.replace("Step1","Step3").replace("rgb(111,181,110)","rgb(53,121,93)"))
+
         #---Button Modifications---#
 
         self.setWindowIcon(Qt.QIcon(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "cas9image.png")))
@@ -71,7 +88,7 @@ class NewGenome(QtWidgets.QMainWindow):
             if not myFile[0].endswith(".fa") and not myFile[0].endswith(".fna") and not myFile[0].endswith(".gbff") and not myFile[0].endswith(".fasta"):
                 QtWidgets.QMessageBox.question(self, "File Selection Error",
                                                "You have selected an incorrect type of file. "
-                                               "Please choose a genbank, fasta, gbff, or a fna file.",
+                                               "Please choose a GenBank, .fasta, GBFF, or .fna file.",
                                                QtWidgets.QMessageBox.Ok)
                 return
             else:
@@ -158,7 +175,7 @@ class NewGenome(QtWidgets.QMainWindow):
         self.seed_len_box.setText(self.Endos[self.comboBoxEndo.currentText()][2])
 
     def findFasta(self):
-        choice = QtWidgets.QMessageBox.question(self, "Extract!", "Are you sure you want to Quit?",
+        choice = QtWidgets.QMessageBox.question(self, "Extract!", "Are you sure you want to quit?",
                                             QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
         if choice == QtWidgets.QMessageBox.Yes:
             sys.exit()
@@ -303,17 +320,15 @@ class NewGenome(QtWidgets.QMainWindow):
                 noCSPRFiles = False
                 break
         if noCSPRFiles == True:
-            if self.exit == False:
-                error = QtWidgets.QMessageBox.question(self, "No CSPR File generated",
-                                                       "No CSPR file has been generated, thus the main program cannot run. Please create a CSPR file."
-                                                       "Alternatively, you could quit the program. Would you like to quit?",
-                                                       QtWidgets.QMessageBox.Yes |
-                                                       QtWidgets.QMessageBox.No,
-                                                       QtWidgets.QMessageBox.No)
-                if (error == QtWidgets.QMessageBox.No):
-                    event.ignore()
-                else:
-                    event.accept()
+            error = QtWidgets.QMessageBox.question(self, "No CSPR File generated",
+                                                    "No CSPR file has been generated, thus the main program cannot run. Please create a CSPR file."
+                                                    "Alternatively, you could quit the program. Would you like to quit?",
+                                                    QtWidgets.QMessageBox.Yes |
+                                                    QtWidgets.QMessageBox.No,
+                                                    QtWidgets.QMessageBox.No)
+            if (error == QtWidgets.QMessageBox.No):
+                event.ignore()
+                return
             else:
                 self.exit = False
                 event.accept()

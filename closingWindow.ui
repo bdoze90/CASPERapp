@@ -13,69 +13,73 @@
   <property name="windowTitle">
    <string>Keep or Delete Files</string>
   </property>
-  <widget class="QLabel" name="title_label">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>271</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Please choose which files to delete:</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="files_table">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>40</y>
-     <width>371</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This table has all of the files in your CSPR database folder.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Please select/highlight which files you would like deleted upon closure of this program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="verticalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOn</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOn</enum>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QAbstractScrollArea::AdjustIgnored</enum>
-   </property>
-   <property name="autoScroll">
-    <bool>true</bool>
-   </property>
-   <property name="verticalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
-   </property>
-   <property name="horizontalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
-   </property>
-   <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-    <bool>true</bool>
-   </attribute>
-  </widget>
-  <widget class="QPushButton" name="submit_button">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>260</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Once pressed, this button will delete any and all selected/highlighted files in the table.&lt;/p&gt;&lt;p&gt;If no files are selected/highlighted, no files will be deleted.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this process is done, the program will close.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">font: 11pt &quot;Sans Serif&quot;;</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="2">
+    <widget class="QTableWidget" name="files_table">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This table has all of the files in your CSPR database folder.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Please select/highlight which files you would like deleted upon closure of this program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     </property>
+     <property name="autoScroll">
+      <bool>true</bool>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="0" column="0" alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="title_label">
+     <property name="text">
+      <string>Please choose which files to delete:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="submit_button">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Once pressed, this button will delete any and all selected/highlighted files in the table.&lt;/p&gt;&lt;p&gt;If no files are selected/highlighted, no files will be deleted.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;After this process is done, the program will close.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Submit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

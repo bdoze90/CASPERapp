@@ -71,7 +71,7 @@ class CoTargeting(QtWidgets.QDialog):
         # set the selected_list, and make sure they select at least 2 endonucleases
         selected_list = self.endo_table.selectedItems()
         if len(selected_list) <= 1:
-            QtWidgets.QMessageBox.question(self, "Nothing Selected", "No endonucleases selected. Please select at least 2 endonucleases",
+            QtWidgets.QMessageBox.question(self, "Nothing Selected", "No endonucleases selected. Please select at least 2 endonucleases.",
                                            QtWidgets.QMessageBox.Ok)
             return
 
