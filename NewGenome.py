@@ -5,6 +5,7 @@ import GlobalSettings
 from functools import partial
 from Algorithms import SeqTranslate
 from NCBI_Search_Window import NCBI_Search_File
+from PyQt5.QtWidgets import *
 
 def iter_except(function, exception):
     """Works like builtin 2-argument `iter()`, but stops on `exception`."""
@@ -47,9 +48,8 @@ class NewGenome(QtWidgets.QMainWindow):
         self.submitButton.clicked.connect(self.submit)
         self.browseForFile.clicked.connect(self.selectFasta)
         self.NCBI_File_Search.clicked.connect(self.prep_ncbi_search)
-        self.JobsQueueBox.setReadOnly(True)
+        self.remove_job.clicked.connect(self.remove_from_queue)
         self.output_browser.setText("Waiting for program initiation...")
-        self.CompletedJobs.setText(" ")
         self.contButton.clicked.connect(self.continue_to_main)
 
         self.comboBoxEndo.currentIndexChanged.connect(self.endo_settings)
@@ -78,9 +78,36 @@ class NewGenome(QtWidgets.QMainWindow):
 
         self.num_chromo_next = False
 
-    ####---FUNCTIONS TO RUN EACH BUTTON---####
-    def selectFasta(self):
 
+        #Jobs Table
+        self.job_Table.setColumnCount(3)
+        self.job_Table.setShowGrid(False)
+        self.job_Table.setHorizontalHeaderLabels(["Job Queue","Job in Progress", "Completed Jobs"])
+        self.job_Table.horizontalHeader().setSectionsClickable(True)
+        self.job_Table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.job_Table.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
+        self.job_Table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.job_Table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.job_Table.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.job_Table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.fin_index=0
+        
+    ####---FUNCTIONS TO RUN EACH BUTTON---####
+    def remove_from_queue(self):
+        if len(self.JobsQueue) != 0:
+            for i in range(len(self.JobsQueue)): # Update job queue column
+                if not i == len(self.JobsQueue)-1:
+                    job_name = self.job_Table.item(i+1,0).text()
+                    the_job = QtWidgets.QTableWidgetItem(str(job_name))
+                    self.job_Table.setItem(i,0,the_job)
+                else:
+                    self.job_Table.item(i,0).setText("")
+            self.JobsQueue.pop(0)
+            self.job_Table.setRowCount(len(self.JobsQueue))
+        else:
+            return
+    
+    def selectFasta(self):
         filed = QtWidgets.QFileDialog()
         myFile = QtWidgets.QFileDialog.getOpenFileName(filed, "Choose a File")
         if (myFile[0] != ""):
@@ -93,7 +120,7 @@ class NewGenome(QtWidgets.QMainWindow):
                 return
             else:
                 self.file = myFile[0]
-                self.s_file.append(myFile[0])
+                self.s_file.setText(str(myFile[0]))
         """cdir = self.lineEdit.text()
         os.chdir(mydir)
         self.gdirectory = mydir
@@ -130,16 +157,16 @@ class NewGenome(QtWidgets.QMainWindow):
                                        QtWidgets.QMessageBox.No)
             if hold == QtWidgets.QMessageBox.No:
                 return
-
+                
         myjob = CasperJob(self.lineEdit_1.text() + " " + self.lineEdit_2.text(), self.lineEdit_2.text(),
                           self.Endos[self.comboBoxEndo.currentText()], self.lineEdit_3.text(), self.file,
                           self.tot_len_box.text(), self.seed_len_box.text(), self.pamBox.isChecked())
         self.JobsQueue.append(myjob)
-        nxtLine=""
-        if len(self.JobsQueueBox.toPlainText())!=0:
-            nxtLine = "\n"
-        self.JobsQueueBox.setPlainText(self.JobsQueueBox.toPlainText()+nxtLine+myjob.name)
-
+        the_job = QtWidgets.QTableWidgetItem(myjob.name)
+        self.job_Table.insertRow(len(self.JobsQueue)-1)
+        self.job_Table.setItem(len(self.JobsQueue)-1,0,the_job)
+        self.job_Table.resizeColumnsToContents()
+        
     def fillEndo(self):
         f = open(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), "CASPERinfo"))
         while True:
@@ -258,50 +285,65 @@ class NewGenome(QtWidgets.QMainWindow):
 
             # Top layer for loop to go through all of the jobs in the queue:
             job = self.JobsQueue[0]
-            program = '"' + os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'Casper_Seq_Finder" ')
-            self.JobInProgress.setText(job.name)
+            the_job = QtWidgets.QTableWidgetItem(str(job.name))
+            self.job_Table.setItem(0,1,the_job) # Sets job in progress column
+            for i in range(len(self.JobsQueue)): # Update job queue column
+                if not i == len(self.JobsQueue)-1:
+                    job_name = self.job_Table.item(i+1,0).text()
+                    the_job = QtWidgets.QTableWidgetItem(str(job_name))
+                    self.job_Table.setItem(i,0,the_job)
+                else:
+                    self.job_Table.item(i,0).setText("")
+            self.job_Table.resizeColumnsToContents()
+            program = '"' + os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), 'Casper_Seq_Finder" ')           
             self.process.readyReadStandardOutput.connect(partial(output_stdout, self.process))
             program += job.get_arguments()
             print(program)
             self.process.start(program)
-            self.JobsQueueBox.clear()
-            for jobs in self.JobsQueue:
-                if(job.name != jobs.name):
-                    self.JobsQueueBox.append(jobs.name)
         else:
             error = QtWidgets.QMessageBox.critical(self, "No Jobs To Run",
                                                    "No jobs are in the Queue to run. Please submit a job before Running.",
                                                    QtWidgets.QMessageBox.Ok)
 
     def upon_process_finishing(self):
-        self.CompletedJobs.append(self.JobsQueue[0].name)
-        self.JobsQueue.pop(0)
-        self.process.close()
-        self.num_chromo = 0
-        if len(self.JobsQueue) != 0:
+        if len(self.JobsQueue) > 1:
+            job_name = self.job_Table.item(0,1).text() #Get name of job in current job column
+            the_job = QtWidgets.QTableWidgetItem(str(job_name)) 
+            self.job_Table.setItem(self.fin_index,2,the_job) #Pass current into finished
+            self.job_Table.resizeColumnsToContents()
+            self.fin_index +=1
+            self.JobsQueue.pop(0)
+            self.process.close()
+            self.num_chromo = 0 
+        elif len(self.JobsQueue) == 1:
+            job_name = self.job_Table.item(0,1).text() #Get name of job in current job column
+            the_job = QtWidgets.QTableWidgetItem(str(job_name)) 
+            self.job_Table.setItem(self.fin_index,2,the_job) #Pass current into finished
+            self.fin_index +=1
+            self.job_Table.item(0,1).setText("") #Remove last current job entry
+            self.job_Table.resizeColumnsToContents()
+            self.JobsQueue.pop(0)
+            
+        if len(self.JobsQueue) > 0:
             self.progressBar.setValue(0)
             self.run_jobs()
         else:
-            self.JobInProgress.clear()
-            self.JobsQueue = []
-            self.JobsQueueBox.clear()
-            self.output_browser.clear()
+            self.process.close()
+            self.num_chromo = 0
 
     def clear_job_queue(self):
+        self.fin_index = 0
         self.process.kill()
-        self.JobsQueue = []
-        self.JobsQueueBox.clear()
+        self.job_Table.clearContents()
+        self.job_Table.setRowCount(0)
         self.lineEdit_1.clear()
         self.lineEdit_2.clear()
         self.lineEdit_3.clear()
         self.keggSuggested.setRowCount(0)
         self.output_browser.clear()
-        self.JobInProgress.clear()
-        self.CompletedJobs.clear()
-        self.s_file.clear()
         self.progressBar.setValue(0)
+        self.s_file.setText("Name of File")
         self.first = False
-        self.s_file.clear()
 
     def reset(self):
         self.lineEdit_1.clear()
@@ -309,7 +351,7 @@ class NewGenome(QtWidgets.QMainWindow):
         self.lineEdit_3.clear()
         self.keggSuggested.clear()
         self.first = False
-        self.s_file.clear()
+        self.s_file.setText("Name of File")
 
     def closeEvent(self, event):
         # make sure that there are cspr files in the DB
@@ -334,17 +376,16 @@ class NewGenome(QtWidgets.QMainWindow):
                 event.accept()
 
         else:
+            self.fin_index = 0
             self.process.kill()
-            self.JobsQueue = []
-            self.JobsQueueBox.clear()
+            self.job_Table.clearContents()
+            self.job_Table.setRowCount(0)
             self.lineEdit_1.clear()
             self.lineEdit_2.clear()
             self.lineEdit_3.clear()
             self.keggSuggested.setRowCount(0)
             self.output_browser.clear()
-            self.JobInProgress.clear()
-            self.CompletedJobs.clear()
-            self.s_file.clear()
+            self.s_file.setText("Name of File")
             self.progressBar.setValue(0)
             self.first = False
             GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
@@ -380,15 +421,12 @@ class NewGenome(QtWidgets.QMainWindow):
 
         else:
             self.process.kill()
-            self.JobsQueue = []
-            self.JobsQueueBox.clear()
+            self.job_Table.clearContents()
             self.lineEdit_1.clear()
             self.lineEdit_2.clear()
             self.lineEdit_3.clear()
             self.keggSuggested.setRowCount(0)
             self.output_browser.clear()
-            self.JobInProgress.clear()
-            self.CompletedJobs.clear()
             self.s_file.clear()
             self.progressBar.setValue(0)
             self.first = False
@@ -454,7 +492,7 @@ class CasperJob:
             cmd += '"' + self.substrain + '"'
 
 
-        print(cmd)
+        #print(cmd)
 
         if (GlobalSettings.OPERATING_SYSTEM_ID == "Windows"):
             db_location = db_location.replace('/', '\\')
