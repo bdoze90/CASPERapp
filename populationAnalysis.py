@@ -46,6 +46,9 @@ class Pop_Analysis(QtWidgets.QMainWindow):
         self.name_form = show_nams_ui.show_names_table()
         self.name_form2 = show_names2_ui.show_names_table2()
 
+        self.mwfg = self.frameGeometry()
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center()
+
 
         #organism table
         self.org_Table.setColumnCount(1)
@@ -656,6 +659,8 @@ class Pop_Analysis(QtWidgets.QMainWindow):
 
     def go_back(self):
         GlobalSettings.mainWindow.getData()
+        GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp)
+        GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft())
         GlobalSettings.mainWindow.show()
         self.hide()
 

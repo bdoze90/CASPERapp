@@ -37,6 +37,8 @@ class NewEndonuclease(QtWidgets.QDialog):
 		self.comboBox2.addItem('HSU_MATRIX_spCAS9-2013 ')	
 
 		self.error = self.button.accepted.connect(self.printButtonPressed)
+
+
 		#self.button.rejected.connect(print("REJECT"))
 	
 		#self.button.setDisabled(True)	

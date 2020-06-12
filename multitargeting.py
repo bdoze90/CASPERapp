@@ -72,6 +72,11 @@ class Multitargeting(QtWidgets.QMainWindow):
         self.scene2 = QtWidgets.QGraphicsScene()
         self.graphicsView_2.setScene(self.scene2)
         self.graphicsView.viewport().installEventFilter(self)
+        
+        self.mwfg = self.frameGeometry() ##Center window
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center() ##Center window
+
+
 
     def eventFilter(self, source, event):
         if (event.type() == QtCore.QEvent.MouseMove and source is self.graphicsView.viewport()):
@@ -534,11 +539,15 @@ class Multitargeting(QtWidgets.QMainWindow):
 
     #connects to view->CASPER to switch back to the main CASPER window
     def changeto_main(self):
+        GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp) ##Center window
+        GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft()) ##Center window
         GlobalSettings.mainWindow.show()
         self.hide()
 
     #connects to go back button in bottom left to switch back to the main CASPER window
     def go_back(self):
+        GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp) ##Center window
+        GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft()) ##Center window
         GlobalSettings.mainWindow.show()
         self.hide()
 

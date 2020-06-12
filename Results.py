@@ -101,6 +101,10 @@ class Results(QtWidgets.QMainWindow):
         self.files_list = []
         self.seq_finder_cspr_file = ''
 
+        self.mwfg = self.frameGeometry() ##Center window
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center() ##Center window
+
+
 
     # this function opens the export_to_csv window
     # first it makes sure that the user actually has some highlighted targets that they want exported

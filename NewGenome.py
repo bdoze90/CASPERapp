@@ -23,6 +23,9 @@ class NewGenome(QtWidgets.QMainWindow):
         self.k = KEGG()
         self.info_path = info_path
 
+        self.mwfg = self.frameGeometry() ##Center window
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center() ##Center window
+
         #---Style Modifications---#
 
         groupbox_style = """
@@ -389,6 +392,8 @@ class NewGenome(QtWidgets.QMainWindow):
             self.progressBar.setValue(0)
             self.first = False
             GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
+            GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp) ##Center window
+            GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft()) ##Center window
             GlobalSettings.mainWindow.show()
             if GlobalSettings.mainWindow.orgChoice.currentText() != '':
                 GlobalSettings.mainWindow.orgChoice.currentIndexChanged.disconnect()
@@ -431,6 +436,8 @@ class NewGenome(QtWidgets.QMainWindow):
             self.progressBar.setValue(0)
             self.first = False
             GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
+            GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp) ##Center window
+            GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft()) ##Center window
             GlobalSettings.mainWindow.show()
             if GlobalSettings.mainWindow.orgChoice.currentText() != '':
                 GlobalSettings.mainWindow.orgChoice.currentIndexChanged.disconnect()

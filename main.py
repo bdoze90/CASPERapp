@@ -53,15 +53,23 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         self.select_all_checkbox.stateChanged.connect(self.select_all_genes)
         self.mainWindow=""
         self.type = ""
+        self.mwfg = self.frameGeometry() ##Center window
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center() ##Center window
+        
 
+    
     def submit(self):
         if self.type == "kegg":
             self.mainWindow.collect_table_data()
             self.hide()
+            self.mainWindow.mwfg.moveCenter(self.mainWindow.cp) ##Center window
+            self.mainWindow.move(self.mainWindow.mwfg.topLeft()) ##Center window
             self.mainWindow.show()
         elif self.type == "nonkegg":
             self.mainWindow.collect_table_data_nonkegg()
             self.hide()
+            self.mainWindow.mwfg.moveCenter(self.mainWindow.cp) ##Center window
+            self.mainWindow.move(self.mainWindow.mwfg.topLeft()) ##Center window
             self.mainWindow.show()
 
     def go_Back(self):
@@ -69,6 +77,8 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         self.mainWindow.checkBoxes.clear()
         self.mainWindow.searches.clear()
         self.tableWidget.setColumnCount(0)
+        self.mainWindow.mwfg.moveCenter(self.mainWindow.cp) ##Center window
+        self.mainWindow.move(self.mainWindow.mwfg.topLeft()) ##Center window
         self.mainWindow.show()
         self.mainWindow.progressBar.setValue(0)
         self.hide()
@@ -132,6 +142,8 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         # if show all is checked, show the window so the user can select the genes they want
         if mainWindow.Show_All_Results.isChecked():
             mainWindow.hide()
+            self.mwfg.moveCenter(self.cp) ##Center window
+            self.move(self.mwfg.topLeft()) ##Center window
             self.show()
         else: # show all not checked
             if (len(mainWindow.checkBoxes) > 15):  # check the size, throw an error if it is too large
@@ -202,6 +214,8 @@ class AnnotationsWindow(QtWidgets.QMainWindow):
         self.mainWindow.progressBar.setValue(50)
         if mainWindow.Show_All_Results.isChecked():
             mainWindow.hide()
+            self.mwfg.moveCenter(self.cp) ##Center window
+            self.move(self.mwfg.topLeft()) ##Center window
             self.show()
         else: #Show all not checked
             if(len(mainWindow.checkBoxes) > 15):#check the size, throw an error if it is too large
@@ -257,6 +271,9 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.organismDict = dict() # the dictionary for the links to download. Key is the description of the organism, value is the ID that can be found in link_list
         self.organismData = list()
 
+        self.mwfg = self.frameGeometry() ##Center window
+        self.cp = QtWidgets.QDesktopWidget().availableGeometry().center() ##Center window
+        
         # --- Style Modifications --- #
         groupbox_style = """
         QGroupBox:title{subcontrol-origin: margin;
@@ -906,10 +923,12 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def launch_newGenome(self):
         self.hide()
+        self.newGenome.mwfg.moveCenter(self.newGenome.cp) ##Center window
+        self.newGenome.move(self.mwfg.topLeft()) ##Center window
         self.newGenome.show()
 
     def launch_newEndonuclease(self):
-       self.newEndonuclease.show()
+        self.newEndonuclease.show()
 
     def launch_newGenomeBrowser(self):
        print("creating graph")
@@ -1385,11 +1404,15 @@ class CMainWindow(QtWidgets.QMainWindow):
     #Function launches the multitargeting window and closing the current one
     def changeto_multitargeting(self):
         os.chdir(os.getcwd())
+        GlobalSettings.MTWin.mwfg.moveCenter(GlobalSettings.MTWin.cp) ##Center window
+        GlobalSettings.MTWin.move(GlobalSettings.MTWin.mwfg.topLeft()) ##Center window
         GlobalSettings.MTWin.show()
         GlobalSettings.mainWindow.hide()
 
     def changeto_population_Analysis(self):
         GlobalSettings.pop_Analysis.launch(GlobalSettings.CSPR_DB)
+        GlobalSettings.pop_Analysis.mwfg.moveCenter(GlobalSettings.pop_Analysis.cp) ##Center window
+        GlobalSettings.pop_Analysis.move(GlobalSettings.pop_Analysis.mwfg.topLeft()) ##Center window
         GlobalSettings.pop_Analysis.show()
         GlobalSettings.mainWindow.hide()
 
@@ -1433,6 +1456,10 @@ class CMainWindow(QtWidgets.QMainWindow):
             if item != self.Results.endonucleaseBox.currentText():
                 self.Results.endonucleaseBox.addItem(item)
 
+                
+
+        self.Results.mwfg.moveCenter(self.Results.cp) ##Center window
+        self.Results.move(self.Results.mwfg.topLeft()) ##Center window
         self.Results.show()
 
     # this function calls the closingWindow class.
@@ -1488,6 +1515,8 @@ class StartupWindow(QtWidgets.QDialog):
         self.pushButton_2.clicked.connect(self.show_window)
         self.pushButton.clicked.connect(self.errormsgmulti)
         self.show()
+        
+
 
     ####---FUNCTIONS TO RUN EACH BUTTON---####
     def changeDir(self):
@@ -1586,6 +1615,8 @@ class StartupWindow(QtWidgets.QDialog):
             GlobalSettings.filedir = self.gdirectory
             self.re_write_dir()
             GlobalSettings.CASPER_FOLDER_LOCATION = self.info_path
+            GlobalSettings.mainWindow.mwfg.moveCenter(GlobalSettings.mainWindow.cp) ##Center window
+            GlobalSettings.mainWindow.move(GlobalSettings.mainWindow.mwfg.topLeft()) ##Center window
             GlobalSettings.mainWindow.show()
             #Tanner - still setup data for MT
             GlobalSettings.MTWin.launch(self.gdirectory)
