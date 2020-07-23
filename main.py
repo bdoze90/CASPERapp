@@ -11,7 +11,7 @@ from closingWin import closingWindow
 from Results import Results, geneViewerSettings
 from NewGenome import NewGenome, NCBI_Search_File
 from NewEndonuclease import NewEndonuclease
-from kishanAnnotation import createGraph
+from genomeBrowser import createGraph
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QDir, QUrl
 

@@ -1,0 +1,66 @@
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<ihtml>
+	<head>
+		<title>NCBI Sequence Viewer - programmatic initialization</title>
+		<script type="text/javascript" src="https://www.ncbi.nlm.nih.gov/projects/sviewer/js/sviewer.js"></script>
+		<script>
+			function loadSV(id) {
+				var svapp = SeqView.App.findAppByDivId("mySeqViewer1");
+				if (!svapp)
+					svapp = new SeqView.App("mySeqViewer1");
+				params = 'appname=UniversityofTennesseeCasper&amp;id=' + id;
+				svapp.reload(params);
+			}
+		</script>
+	</head>
+	<body>
+		Select a chromosome from the list:<br/>
+
+	<select onchange="loadSV(event.target.value);">
+		<option value="">-</option>
+	
+		<option value="NC_001133.9">Chromosome 1</option>
+	
+		<option value="NC_001134.8">Chromosome 2</option>
+	
+		<option value="NC_001135.5">Chromosome 3</option>
+	
+		<option value="NC_001136.10">Chromosome 4</option>
+	
+		<option value="NC_001137.3">Chromosome 5</option>
+	
+		<option value="NC_001138.5">Chromosome 6</option>
+	
+		<option value="NC_001139.9">Chromosome 7</option>
+	
+		<option value="NC_001140.6">Chromosome 8</option>
+	
+		<option value="NC_001141.2">Chromosome 9</option>
+	
+		<option value="NC_001142.9">Chromosome 10</option>
+	
+		<option value="NC_001143.9">Chromosome 11</option>
+	
+		<option value="NC_001144.5">Chromosome 12</option>
+	
+		<option value="NC_001145.3">Chromosome 13</option>
+	
+		<option value="NC_001146.8">Chromosome 14</option>
+	
+		<option value="NC_001147.6">Chromosome 15</option>
+	
+		<option value="NC_001148.4">Chromosome 16</option>
+	
+		<option value="NC_001224.1">Chromosome 17</option>
+	
+		</select>
+		<br/>
+	
+		<div id="mySeqViewer1" class="SeqViewerApp" data-autoload> 
+			<a href="?embedded=true&appname=testapp1&id=NC_001133.9"></a> 
+		</div>	
+		
+	</body>
+	</html>
+	

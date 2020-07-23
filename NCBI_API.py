@@ -113,7 +113,7 @@ class Assembly:
         for ret in myidlist:
             # this calls Entrez function
             handle = Entrez.esummary(db="assembly", id=ret)
-            record = Entrez.read(handle)
+            record = Entrez.read(handle, validate=False)
 
             # get the orgID which is the ID for the genbank or Refseq link. This could be different than the accession link
             if database == 'RefSeq':
